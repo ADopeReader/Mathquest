@@ -1,0 +1,17 @@
+<resources>
+
+
+    <string name="app_name">Rechner</string>
+    <string name="Textinfo1">Gib eine Zahl ein</string>
+    <string name="Textinfo2">Gib noch eine Zahl ein!</string>
+    <string name="Buttonplus">+</string>
+    <string name="Buttonminus">-</string>
+    <string name="Buttongeteilt">/</string>
+    <string name="Buttonmal">*</string>
+    <string name="action_settings">Wo stehe ich?</string>
+    <string name="ausgabe">0</string>
+    <string name="Ergebnis">Ergebnis</string>
+    <string name="Ergebnisanzeige">0</string>
+    
+
+</resources>
