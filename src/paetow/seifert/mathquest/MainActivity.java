@@ -38,6 +38,8 @@ public class MainActivity extends Activity {
 	int malZahl;
 	int teilZahl;
 	
+	private Boolean gameEnded;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +64,7 @@ public class MainActivity extends Activity {
 		turn4 = (RadioButton)findViewById(R.id.vierterZug);
 		turnDisplay = new RadioButton[zugAnzahl];
 	     
-		//Array befüllen
+		//Array befuellen
 		
 		turnDisplay[0] = turn1;
 		turnDisplay[1] = turn2;
@@ -70,6 +72,7 @@ public class MainActivity extends Activity {
 		turnDisplay[3] = turn4;
 		
 		
+		gameEnded = false;
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
 		Goal = Zufall.nextInt(100);
@@ -122,38 +125,43 @@ public class MainActivity extends Activity {
 
 	public void addieren(View Buttonclick) {
 
+		if (gameEnded == true){}
+		else{
 		ans = ans + plusZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		ziehen();
+		ziehen();}
 	}
 
 	public void subtrahieren(View Buttonclick) {
 
-
+		if (gameEnded == true){}
+		else {
 		ans = ans - minusZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		ziehen();
+		ziehen();}
 	}
 	
 	
 	public void dividieren (View Buttonclick) {
 		
-		 
+		if (gameEnded == true){}
+		else {
 		ans = ans / teilZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		ziehen();
+		ziehen();}
 	}
 	
 	public void multiplizieren (View Buttonclick) {
 		
-
+        if (gameEnded == true){}
+        else {
 		ans = ans * malZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		ziehen();
+		ziehen();}
 	}
 	
 	
@@ -163,13 +171,14 @@ public class MainActivity extends Activity {
 		
 		turnDisplay[zugCounter-1].setChecked(true);
 		
-		if (zugCounter == zugAnzahl && ans == Goal){Ausgabe.setText("Gewonnen!");}
-		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");}
+		if (zugCounter == zugAnzahl && ans == Goal){Ausgabe.setText("Gewonnen!");gameEnded = true;}
+		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");gameEnded = true;}
 		
 	}
 	
 	
-	public void reset(){
+	public void reset(View Buttonclick){
+		gameEnded = false;
 		zugCounter = 0;
 		ans = Start;
 		String zwischenErgebnis = String.valueOf(ans);
