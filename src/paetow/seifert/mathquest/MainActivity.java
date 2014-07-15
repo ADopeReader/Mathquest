@@ -34,6 +34,16 @@ public class MainActivity extends Activity {
 	int malZahl;
 	int teilZahl;
 	
+	int buttonA;
+	int buttonB;
+	int buttonC;
+	int buttonD;
+	
+	Rechenoperation anton; 
+	Rechenoperation berta;
+	Rechenoperation chris;
+	Rechenoperation doofie;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,6 +64,7 @@ public class MainActivity extends Activity {
 		Teilbutton = (Button) findViewById(R.id.dividieren);
 		
 		
+		// Zufahlszahlen zuweisen
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
 		Goal = Zufall.nextInt(100);
@@ -62,17 +73,31 @@ public class MainActivity extends Activity {
 		minusZahl = Zufall.nextInt(10);
 		malZahl = Zufall.nextInt(10);
 		teilZahl = Zufall.nextInt(10);
-	   
 		
+		
+		// Button Enums
+		buttonA= Zufall.nextInt(3);
+		buttonB= Zufall.nextInt(3);
+		buttonC= Zufall.nextInt(3);
+		buttonD= Zufall.nextInt(3);
+		
+		anton = Rechenoperation.getEnumByValue(buttonA);
+		berta = Rechenoperation.getEnumByValue(buttonB);
+		chris = Rechenoperation.getEnumByValue(buttonC);
+		doofie = Rechenoperation.getEnumByValue(buttonD);
+		
+		
+		// Textfelder zuweisen
 		ans = Start;
 		String Startzahl = String.valueOf(Start);
 		String zuErreichen = String.valueOf(Goal);
 		String zwischenErgebnis = String.valueOf(ans);
-		String plus = "+"+String.valueOf(plusZahl);
-		String minus = "-"+String.valueOf(minusZahl);
-		String mal = "*"+String.valueOf(malZahl);
-		String teil = ":"+String.valueOf(teilZahl);
-	
+		
+		String plus = anton.getRechenzeichen()+String.valueOf(plusZahl);
+		String minus = berta.getRechenzeichen()+String.valueOf(minusZahl);
+		String mal = chris.getRechenzeichen()+String.valueOf(malZahl);
+		String teil = doofie.getRechenzeichen()+String.valueOf(teilZahl);
+		
 		
 		startZahl.setText(Startzahl);
 		zielZahl.setText(zuErreichen);
@@ -101,40 +126,59 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	
+	
 	public void addieren(View Buttonclick) {
-
-		ans = ans + plusZahl; 
+		
+		if (anton.toString()=="PLUS") 	ans = ans + plusZahl;
+		if (anton.toString()=="MINUS") ans = ans - plusZahl;
+		if (anton.toString()=="MAL") 	ans = ans * plusZahl;
+		if (anton.toString()=="TEIL") ans = ans / plusZahl;
+		
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
+		ziehen();
 		
 	}
 
 	public void subtrahieren(View Buttonclick) {
 
-
-		ans = ans - minusZahl; 
+		if (berta.toString()=="PLUS") 	ans = ans + minusZahl;
+		if (berta.toString()=="MINUS") ans = ans - minusZahl;
+		if (berta.toString()=="MAL") 	ans = ans * minusZahl;
+		if (berta.toString()=="TEIL") ans = ans / minusZahl;
+		
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		
-	}
-	
-	
-	public void dividieren (View Buttonclick) {
-		
-		 
-		ans = ans / teilZahl; 
-		String zwischenErgebnis = String.valueOf(ans);
-		Ausgabe.setText(zwischenErgebnis);
+		ziehen();
 	}
 	
 	public void multiplizieren (View Buttonclick) {
 		
-
-		ans = ans * malZahl; 
+		if (chris.toString()=="PLUS") 	ans = ans + malZahl;
+		if (chris.toString()=="MINUS") ans = ans - malZahl;
+		if (chris.toString()=="MAL") 	ans = ans * malZahl;
+		if (chris.toString()=="TEIL") ans = ans / malZahl;
+		
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
+		ziehen();
 	}
+	
+	public void dividieren (View Buttonclick) {
+		 
+		if (doofie.toString()=="PLUS") 	ans = ans + teilZahl;
+		if (doofie.toString()=="MINUS") ans = ans - teilZahl;
+		if (doofie.toString()=="MAL") 	ans = ans * teilZahl;
+		if (doofie.toString()=="TEIL") ans = ans / teilZahl;
+		
+		String zwischenErgebnis = String.valueOf(ans);
+		Ausgabe.setText(zwischenErgebnis);
+		ziehen();
+	}
+	
+	
 	
 	
 	private void ziehen (){
@@ -155,6 +199,33 @@ public class MainActivity extends Activity {
 		
 	}
 	
+	public enum Rechenoperation {
+		PLUS,
+		MINUS,
+		MAL,
+		TEIL;
+		
+		public static Rechenoperation getEnumByValue(int value) {
+			switch (value) {
+				case 0:   	return PLUS;
+				case 1:   	return MINUS;
+				case 2:   	return MAL;
+				case 3:   	return TEIL;
+				default:  	return null;
+			}
+		}
+		public String getRechenzeichen (){
+			switch (this){
+				case PLUS: 	return "+";
+				case MINUS: return "-";
+				case MAL: 	return "x";
+				case TEIL : return ":";
+				default: 	return null;
+				
+			}
+		}
+	}
+		 
 	
 	
 	

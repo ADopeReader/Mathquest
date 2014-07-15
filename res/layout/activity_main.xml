@@ -123,7 +123,6 @@
         android:minWidth="@dimen/Button_Hoehe"
         android:onClick="multiplizieren"
         android:paddingBottom="1dp"
-        android:paddingTop="30dp"
         android:text="@string/Buttonmal"
         android:textSize="@dimen/Button_Textgr" />
 
