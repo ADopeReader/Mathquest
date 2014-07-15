@@ -17,7 +17,11 @@ public class MainActivity extends Activity {
 	private EditText startZahl;
 	private EditText zielZahl;
 	private TextView Ausgabe;
-	private RadioButton turn;
+	private RadioButton turn1;
+	private RadioButton turn2;
+	private RadioButton turn3;
+	private RadioButton turn4;
+	private RadioButton [] turnDisplay;
 	private Button Plusbutton;
 	private Button Minusbutton;
 	private Button Malbutton;
@@ -45,13 +49,25 @@ public class MainActivity extends Activity {
 		
 		
 		//Eingabefelder initialisieren
-		startZahl = (EditText) findViewById(R.id.Startzahl);
-		zielZahl = (EditText) findViewById(R.id.Goal);
-		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-		Plusbutton = (Button) findViewById(R.id.addieren);
-		Minusbutton = (Button) findViewById(R.id.subtrahieren);
+		startZahl = (EditText)findViewById(R.id.Startzahl);
+		zielZahl = (EditText)findViewById(R.id.Goal);
+		Ausgabe = (TextView)findViewById(R.id.Ergebnisanzeige);
+		Plusbutton = (Button)findViewById(R.id.addieren);
+		Minusbutton = (Button)findViewById(R.id.subtrahieren);
 		Malbutton = (Button) findViewById(R.id.multiplizieren);
-		Teilbutton = (Button) findViewById(R.id.dividieren);
+		Teilbutton = (Button)findViewById(R.id.dividieren);
+		turn1 = (RadioButton)findViewById(R.id.ersterZug);
+		turn2 = (RadioButton)findViewById(R.id.zweiterZug);
+		turn3 = (RadioButton)findViewById(R.id.dritterZug);
+		turn4 = (RadioButton)findViewById(R.id.vierterZug);
+		turnDisplay = new RadioButton[zugAnzahl];
+	     
+		//Array befüllen
+		
+		turnDisplay[0] = turn1;
+		turnDisplay[1] = turn2;
+		turnDisplay[2] = turn3;
+		turnDisplay[3] = turn4;
 		
 		
 		Random Zufall = new Random();
@@ -74,6 +90,8 @@ public class MainActivity extends Activity {
 		String teil = ":"+String.valueOf(teilZahl);
 	
 		
+		
+		//Ausgabe in View
 		startZahl.setText(Startzahl);
 		zielZahl.setText(zuErreichen);
 	    Ausgabe.setText(Startzahl); 
@@ -107,7 +125,7 @@ public class MainActivity extends Activity {
 		ans = ans + plusZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		
+		ziehen();
 	}
 
 	public void subtrahieren(View Buttonclick) {
@@ -116,7 +134,7 @@ public class MainActivity extends Activity {
 		ans = ans - minusZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
-		
+		ziehen();
 	}
 	
 	
@@ -126,6 +144,7 @@ public class MainActivity extends Activity {
 		ans = ans / teilZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
+		ziehen();
 	}
 	
 	public void multiplizieren (View Buttonclick) {
@@ -134,12 +153,15 @@ public class MainActivity extends Activity {
 		ans = ans * malZahl; 
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis);
+		ziehen();
 	}
 	
 	
 	private void ziehen (){
 	
 		zugCounter++;
+		
+		turnDisplay[zugCounter-1].setChecked(true);
 		
 		if (zugCounter == zugAnzahl && ans == Goal){Ausgabe.setText("Gewonnen!");}
 		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");}
@@ -150,11 +172,13 @@ public class MainActivity extends Activity {
 	public void reset(){
 		zugCounter = 0;
 		ans = Start;
+		String zwischenErgebnis = String.valueOf(ans);
+		 Ausgabe.setText(zwischenErgebnis); 
 		
-		//Todo: Radiobuttons zuruecksetzen
+		for (int i= 0; i< turnDisplay.length;i++){turnDisplay[i].setChecked(false);}
+		
 		
 	}
-	
 	
 	
 	

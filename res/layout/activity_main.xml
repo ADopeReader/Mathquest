@@ -128,20 +128,12 @@
         android:textSize="@dimen/Button_Textgr" />
 
     <RadioButton
-        android:id="@+id/vierterZug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/zweiterZug"
-        android:layout_alignBottom="@+id/zweiterZug"
-        android:layout_alignRight="@+id/Goal" />
-
-    <RadioButton
         android:id="@+id/ersterZug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/zweiterZug"
         android:layout_alignBottom="@+id/zweiterZug"
-        android:layout_alignLeft="@+id/textView3"
+        android:layout_toLeftOf="@+id/textView3"
         android:checked="false" />
 
     <RadioButton
@@ -150,14 +142,34 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/dritterZug"
         android:layout_alignBottom="@+id/dritterZug"
-        android:layout_alignRight="@+id/textView3" />
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_marginLeft="22dp" />
 
     <RadioButton
         android:id="@+id/dritterZug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/dividieren"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="22dp" />
+        android:layout_marginBottom="36dp"
+        android:layout_toRightOf="@+id/textView2" />
+
+    <RadioButton
+        android:id="@+id/vierterZug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dritterZug"
+        android:layout_alignBottom="@+id/dritterZug"
+        android:layout_alignLeft="@+id/dividieren" />
+
+    <Button
+        android:id="@+id/reset"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vierterZug"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/vierterZug"
+        android:text="@string/reset"
+        android:onClick="reset" />
 
 </RelativeLayout>
