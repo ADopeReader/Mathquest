@@ -9,28 +9,6 @@
     tools:context="com.example.rechner.MainActivity" >
 
     <TextView
-        android:id="@+id/Ergebnisanzeige"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/multiplizieren"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/dividieren"
-        android:gravity="right"
-        android:linksClickable="false"
-        android:text="@string/Ergebnisanzeige"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50sp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Ergebnisanzeige"
-        android:layout_alignLeft="@+id/textView2"
-        android:text="@string/Ergebnis"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,21 +17,6 @@
         android:text="@string/Start"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/normale_groesse" />
-
-    <Button
-        android:id="@+id/multiplizieren"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_marginBottom="42dp"
-        android:minHeight="@dimen/Button_Hoehe"
-        android:minWidth="@dimen/Button_Hoehe"
-        android:onClick="multiplizieren"
-        android:paddingBottom="1dp"
-        android:paddingTop="30dp"
-        android:text="@string/Buttonmal"
-        android:textSize="@dimen/Button_Textgr" />
 
     <Button
         android:id="@+id/addieren"
@@ -126,5 +89,74 @@
 
         <requestFocus />
     </EditText>
+
+    <TextView
+        android:id="@+id/Ergebnisanzeige"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/dividieren"
+        android:layout_marginBottom="70dp"
+        android:gravity="right"
+        android:linksClickable="false"
+        android:text="@string/Ergebnisanzeige"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Ergebnisanzeige"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="@string/Ergebnis"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/multiplizieren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:minHeight="@dimen/Button_Hoehe"
+        android:minWidth="@dimen/Button_Hoehe"
+        android:onClick="multiplizieren"
+        android:paddingBottom="1dp"
+        android:paddingTop="30dp"
+        android:text="@string/Buttonmal"
+        android:textSize="@dimen/Button_Textgr" />
+
+    <RadioButton
+        android:id="@+id/vierterZug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/zweiterZug"
+        android:layout_alignBottom="@+id/zweiterZug"
+        android:layout_alignRight="@+id/Goal" />
+
+    <RadioButton
+        android:id="@+id/ersterZug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/zweiterZug"
+        android:layout_alignBottom="@+id/zweiterZug"
+        android:layout_alignLeft="@+id/textView3"
+        android:checked="false" />
+
+    <RadioButton
+        android:id="@+id/zweiterZug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dritterZug"
+        android:layout_alignBottom="@+id/dritterZug"
+        android:layout_alignRight="@+id/textView3" />
+
+    <RadioButton
+        android:id="@+id/dritterZug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dividieren"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="22dp" />
 
 </RelativeLayout>

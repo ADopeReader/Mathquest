@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -15,16 +16,22 @@ public class MainActivity extends Activity {
 	private EditText startZahl;
 	private EditText zielZahl;
 	private TextView Ausgabe;
+	private RadioButton turn;
 	
 	private int ans;
 	private int Start;
 	private int Goal;
+	private int zugAnzahl;
+	private int zugCounter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);   //Mit dieser Methode wird das Benutzerinterface dargestellt
 		
+		
+		zugAnzahl = 4;                           //benoetigte Zuege vorgeben
+		zugCounter = 0;
 		
 		
 		//Eingabefelder initialisieren
@@ -164,5 +171,28 @@ public class MainActivity extends Activity {
 			Ausgabe.setText(ergebnisausgeben);
 		}
 	}
+	
+	
+	private void ziehen (){
+	
+		zugCounter++;
+		
+		if (zugCounter == zugAnzahl && ans == Goal){Ausgabe.setText("Gewonnen!");}
+		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");}
+		
+	}
+	
+	
+	public void reset(){
+		zugCounter = 0;
+		ans = Start;
+		
+		//Todo: Radiobuttons zuruecksetzen
+		
+	}
+	
+	
+	
+	
 
 }
