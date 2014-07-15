@@ -12,6 +12,7 @@
     <string name="ausgabe">0</string>
     <string name="Ergebnis">Ergebnis</string>
     <string name="Ergebnisanzeige">0</string>
+    <string name="reset">reset</string>
     
 
 </resources>
