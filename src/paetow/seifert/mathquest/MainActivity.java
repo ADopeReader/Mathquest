@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -17,12 +18,21 @@ public class MainActivity extends Activity {
 	private EditText zielZahl;
 	private TextView Ausgabe;
 	private RadioButton turn;
+	private Button Plusbutton;
+	private Button Minusbutton;
+	private Button Malbutton;
+	private Button Teilbutton;
 	
 	private int ans;
 	private int Start;
 	private int Goal;
 	private int zugAnzahl;
 	private int zugCounter;
+	
+	int plusZahl; 
+	int minusZahl;
+	int malZahl;
+	int teilZahl;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +47,40 @@ public class MainActivity extends Activity {
 		//Eingabefelder initialisieren
 		startZahl = (EditText) findViewById(R.id.Startzahl);
 		zielZahl = (EditText) findViewById(R.id.Goal);
-		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-	
+		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
+		Plusbutton = (Button) findViewById(R.id.addieren);
+		Minusbutton = (Button) findViewById(R.id.subtrahieren);
+		Malbutton = (Button) findViewById(R.id.multiplizieren);
+		Teilbutton = (Button) findViewById(R.id.dividieren);
 		
-	   Random Zufall = new Random();
-	   Start = Zufall.nextInt(20);
-	   Goal = Zufall.nextInt(100);
 		
-		
+		Random Zufall = new Random();
+		Start = Zufall.nextInt(20);
+		Goal = Zufall.nextInt(100);
+	   
+		plusZahl = Zufall.nextInt(10);
+		minusZahl = Zufall.nextInt(10);
+		malZahl = Zufall.nextInt(10);
+		teilZahl = Zufall.nextInt(10);
+	   
 		
 		ans = Start;
 		String Startzahl = String.valueOf(Start);
 		String zuErreichen = String.valueOf(Goal);
 		String zwischenErgebnis = String.valueOf(ans);
+		String plus = "+"+String.valueOf(plusZahl);
+		String minus = "-"+String.valueOf(minusZahl);
+		String mal = "*"+String.valueOf(malZahl);
+		String teil = ":"+String.valueOf(teilZahl);
 	
 		
 		startZahl.setText(Startzahl);
 		zielZahl.setText(zuErreichen);
 	    Ausgabe.setText(Startzahl); 
+	    Plusbutton.setText(plus);
+	    Minusbutton.setText(minus);
+	    Malbutton.setText(mal);
+	    Teilbutton.setText(teil);
 	}
 
 	@Override
@@ -78,98 +104,36 @@ public class MainActivity extends Activity {
 
 	public void addieren(View Buttonclick) {
 
-		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
-			String Fehler = "Fehler!!";
-			Ausgabe.setText(Fehler);
-		}
-
-		else {
-			String temp = startZahl.getText().toString();
-			int summand1 = Integer.parseInt(temp);
-
-			temp = zielZahl.getText().toString();
-			int summand2 = Integer.parseInt(temp);
-
-			int ergebnis = summand1 + summand2;
-
-			Integer ausgeben = ergebnis;
-			String ergebnisausgeben = ausgeben.toString();
-
-			Ausgabe.setText(ergebnisausgeben);
-		}
+		ans = ans + plusZahl; 
+		String zwischenErgebnis = String.valueOf(ans);
+		Ausgabe.setText(zwischenErgebnis);
+		
 	}
 
 	public void subtrahieren(View Buttonclick) {
 
 
-		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
-			String Fehler = "Fehler!!";
-			Ausgabe.setText(Fehler);
-		}
-
-		else {
-			String temp = startZahl.getText().toString();
-			int summand1 = Integer.parseInt(temp);
-
-			temp = zielZahl.getText().toString();
-			int summand2 = Integer.parseInt(temp);
-
-			int ergebnis = summand1 - summand2;
-
-			Integer ausgeben = ergebnis;
-			String ergebnisausgeben = ausgeben.toString();
-
-			Ausgabe.setText(ergebnisausgeben);
-		}
+		ans = ans - minusZahl; 
+		String zwischenErgebnis = String.valueOf(ans);
+		Ausgabe.setText(zwischenErgebnis);
+		
 	}
 	
 	
 	public void dividieren (View Buttonclick) {
 		
 		 
-		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
-			String Fehler = "Fehler!!";
-			Ausgabe.setText(Fehler);
-		}
-
-		else {
-			String temp = startZahl.getText().toString();
-			int summand1 = Integer.parseInt(temp);
-
-			temp = zielZahl.getText().toString();
-			int summand2 = Integer.parseInt(temp);
-
-			int ergebnis = summand1 / summand2;
-
-			Integer ausgeben = ergebnis;
-			String ergebnisausgeben = ausgeben.toString();
-
-			Ausgabe.setText(ergebnisausgeben);
-		}
+		ans = ans / teilZahl; 
+		String zwischenErgebnis = String.valueOf(ans);
+		Ausgabe.setText(zwischenErgebnis);
 	}
 	
 	public void multiplizieren (View Buttonclick) {
 		
 
-		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
-			String Fehler = "Fehler!!";
-			Ausgabe.setText(Fehler);
-		}
-
-		else {
-			String temp = startZahl.getText().toString();
-			int summand1 = Integer.parseInt(temp);
-
-			temp = zielZahl.getText().toString();
-			int summand2 = Integer.parseInt(temp);
-
-			int ergebnis = summand1 * summand2;
-
-			Integer ausgeben = ergebnis;
-			String ergebnisausgeben = ausgeben.toString();
-
-			Ausgabe.setText(ergebnisausgeben);
-		}
+		ans = ans * malZahl; 
+		String zwischenErgebnis = String.valueOf(ans);
+		Ausgabe.setText(zwischenErgebnis);
 	}
 	
 	
