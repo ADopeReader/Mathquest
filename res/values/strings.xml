@@ -1,7 +1,7 @@
 <resources>
 
 
-    <string name="app_name">Rechner</string>
+    <string name="app_name">mathquest</string>
     <string name="Textinfo1">Gib eine Zahl ein</string>
     <string name="Textinfo2">Gib noch eine Zahl ein!</string>
     <string name="Buttonplus">+</string>

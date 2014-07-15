@@ -1,5 +1,7 @@
 package paetow.seifert.mathquest;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +16,29 @@ public class MainActivity extends Activity {
 	private EditText test2;
 	private TextView Ausgabe;
 	
+	private int ans;
+	private int Start;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);   //Mit dieser Methode wird das Benutzerinterface dargestellt
+		
+		
+		//Eingabefelder initialisieren
+		test = (EditText) findViewById(R.id.EditText_Feld1);
+		 test2 = (EditText) findViewById(R.id.EditText_Feld2);
+		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
+		
+		
+	   Random Zufall = new Random();
+		Start = Zufall.nextInt(20);
+		
+		ans = Start;
+		String Startzahl = String.valueOf(ans);
+		
+		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
+	    Ausgabe.setText(Startzahl); 
 	}
 
 	@Override
@@ -42,10 +62,6 @@ public class MainActivity extends Activity {
 
 	public void addieren(View Buttonclick) {
 
-		 test = (EditText) findViewById(R.id.EditText_Feld1);
-		 test2 = (EditText) findViewById(R.id.EditText_Feld2);
-		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-
 		if ((test.length() == 0) | (test2.length() == 0)) {
 			String Fehler = "Fehler!!";
 			Ausgabe.setText(Fehler);
@@ -68,10 +84,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void subtrahieren(View Buttonclick) {
-		
-		 test = (EditText) findViewById(R.id.EditText_Feld1);
-		 test2 = (EditText) findViewById(R.id.EditText_Feld2);
-		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
+
 
 		if ((test.length() == 0) | (test2.length() == 0)) {
 			String Fehler = "Fehler!!";
@@ -97,10 +110,7 @@ public class MainActivity extends Activity {
 	
 	public void dividieren (View Buttonclick) {
 		
-		 test = (EditText) findViewById(R.id.EditText_Feld1);
-		 test2 = (EditText) findViewById(R.id.EditText_Feld2);
-		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-
+		 
 		if ((test.length() == 0) | (test2.length() == 0)) {
 			String Fehler = "Fehler!!";
 			Ausgabe.setText(Fehler);
@@ -124,9 +134,6 @@ public class MainActivity extends Activity {
 	
 	public void multiplizieren (View Buttonclick) {
 		
-		 test = (EditText) findViewById(R.id.EditText_Feld1);
-		 test2 = (EditText) findViewById(R.id.EditText_Feld2);
-		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
 
 		if ((test.length() == 0) | (test2.length() == 0)) {
 			String Fehler = "Fehler!!";
