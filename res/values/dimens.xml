@@ -7,6 +7,10 @@
     <dimen name="Button_Breite">100dp</dimen>
     <dimen name="Button_Hoehe">100dp</dimen>
     <dimen name= "Button_Textgr">60dp</dimen>
+    <dimen name="Abstand_linkeReihe">10dp</dimen>
+    <dimen name="Hoehee_untereButtons">240dp</dimen>
+    <dimen name="Hoehe_obereButtons">120dp</dimen>
+    <dimen name="Abstand_rechteReihe">160dp</dimen>
 
 
 </resources>

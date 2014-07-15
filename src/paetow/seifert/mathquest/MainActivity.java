@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	private EditText test;
-	private EditText test2;
+	private EditText startZahl;
+	private EditText zielZahl;
 	private TextView Ausgabe;
 	
 	private int ans;
 	private int Start;
+	private int Goal;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +26,27 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);   //Mit dieser Methode wird das Benutzerinterface dargestellt
 		
 		
-		//Eingabefelder initialisieren
-		test = (EditText) findViewById(R.id.EditText_Feld1);
-		 test2 = (EditText) findViewById(R.id.EditText_Feld2);
-		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
 		
+		//Eingabefelder initialisieren
+		startZahl = (EditText) findViewById(R.id.Startzahl);
+		zielZahl = (EditText) findViewById(R.id.Goal);
+		 Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
+	
 		
 	   Random Zufall = new Random();
-		Start = Zufall.nextInt(20);
+	   Start = Zufall.nextInt(20);
+	   Goal = Zufall.nextInt(100);
+		
+		
 		
 		ans = Start;
-		String Startzahl = String.valueOf(ans);
+		String Startzahl = String.valueOf(Start);
+		String zuErreichen = String.valueOf(Goal);
+		String zwischenErgebnis = String.valueOf(ans);
+	
 		
-		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
+		startZahl.setText(Startzahl);
+		zielZahl.setText(zuErreichen);
 	    Ausgabe.setText(Startzahl); 
 	}
 
@@ -62,16 +71,16 @@ public class MainActivity extends Activity {
 
 	public void addieren(View Buttonclick) {
 
-		if ((test.length() == 0) | (test2.length() == 0)) {
+		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
 			String Fehler = "Fehler!!";
 			Ausgabe.setText(Fehler);
 		}
 
 		else {
-			String temp = test.getText().toString();
+			String temp = startZahl.getText().toString();
 			int summand1 = Integer.parseInt(temp);
 
-			temp = test2.getText().toString();
+			temp = zielZahl.getText().toString();
 			int summand2 = Integer.parseInt(temp);
 
 			int ergebnis = summand1 + summand2;
@@ -86,16 +95,16 @@ public class MainActivity extends Activity {
 	public void subtrahieren(View Buttonclick) {
 
 
-		if ((test.length() == 0) | (test2.length() == 0)) {
+		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
 			String Fehler = "Fehler!!";
 			Ausgabe.setText(Fehler);
 		}
 
 		else {
-			String temp = test.getText().toString();
+			String temp = startZahl.getText().toString();
 			int summand1 = Integer.parseInt(temp);
 
-			temp = test2.getText().toString();
+			temp = zielZahl.getText().toString();
 			int summand2 = Integer.parseInt(temp);
 
 			int ergebnis = summand1 - summand2;
@@ -111,16 +120,16 @@ public class MainActivity extends Activity {
 	public void dividieren (View Buttonclick) {
 		
 		 
-		if ((test.length() == 0) | (test2.length() == 0)) {
+		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
 			String Fehler = "Fehler!!";
 			Ausgabe.setText(Fehler);
 		}
 
 		else {
-			String temp = test.getText().toString();
+			String temp = startZahl.getText().toString();
 			int summand1 = Integer.parseInt(temp);
 
-			temp = test2.getText().toString();
+			temp = zielZahl.getText().toString();
 			int summand2 = Integer.parseInt(temp);
 
 			int ergebnis = summand1 / summand2;
@@ -135,16 +144,16 @@ public class MainActivity extends Activity {
 	public void multiplizieren (View Buttonclick) {
 		
 
-		if ((test.length() == 0) | (test2.length() == 0)) {
+		if ((startZahl.length() == 0) | (zielZahl.length() == 0)) {
 			String Fehler = "Fehler!!";
 			Ausgabe.setText(Fehler);
 		}
 
 		else {
-			String temp = test.getText().toString();
+			String temp = startZahl.getText().toString();
 			int summand1 = Integer.parseInt(temp);
 
-			temp = test2.getText().toString();
+			temp = zielZahl.getText().toString();
 			int summand2 = Integer.parseInt(temp);
 
 			int ergebnis = summand1 * summand2;
