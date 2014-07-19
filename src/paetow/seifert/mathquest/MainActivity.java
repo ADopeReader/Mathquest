@@ -120,11 +120,34 @@ public class MainActivity extends Activity {
 		String zuErreichen = String.valueOf(Goal);
 		String zwischenErgebnis = String.valueOf(ans);
 
-		String plus = anton.getRechenzeichen()+String.valueOf(plusZahl);
-		String minus = berta.getRechenzeichen()+String.valueOf(minusZahl);
-		String mal = chris.getRechenzeichen()+String.valueOf(malZahl);
-		String teil = doofie.getRechenzeichen()+String.valueOf(teilZahl);
+		String plus = String.valueOf(plusZahl);
+		String minus = String.valueOf(minusZahl);
+		String mal = String.valueOf(malZahl);
+		String teil = String.valueOf(teilZahl);
 
+		
+		//Buttons das jeweilige Drawable zuordnen
+		if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
+		if (anton.toString()=="MINUS") Plusbutton.setBackgroundResource(R.drawable.minus);
+		if (anton.toString()=="MAL") 	Plusbutton.setBackgroundResource(R.drawable.mal);
+		if (anton.toString()=="TEIL") Plusbutton.setBackgroundResource(R.drawable.geteilt);
+		
+		if (berta.toString()=="PLUS") Minusbutton.setBackgroundResource(R.drawable.plus);
+		if (berta.toString()=="MINUS") Minusbutton.setBackgroundResource(R.drawable.minus);
+		if (berta.toString()=="MAL") 	Minusbutton.setBackgroundResource(R.drawable.mal);
+		if (berta.toString()=="TEIL") Minusbutton.setBackgroundResource(R.drawable.geteilt);
+		
+		if (chris.toString()=="PLUS") Malbutton.setBackgroundResource(R.drawable.plus);
+		if (chris.toString()=="MINUS") Malbutton.setBackgroundResource(R.drawable.minus);
+		if (chris.toString()=="MAL") 	Malbutton.setBackgroundResource(R.drawable.mal);
+		if (chris.toString()=="TEIL") Malbutton.setBackgroundResource(R.drawable.geteilt);
+		
+		if (doofie.toString()=="PLUS") Teilbutton.setBackgroundResource(R.drawable.plus);
+		if (doofie.toString()=="MINUS") Teilbutton.setBackgroundResource(R.drawable.minus);
+		if (doofie.toString()=="MAL") 	Teilbutton.setBackgroundResource(R.drawable.mal);
+		if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
+
+		
 		
 
 		startZahl.setText(Startzahl);

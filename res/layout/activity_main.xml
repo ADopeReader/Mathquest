@@ -21,11 +21,14 @@
 
     <Button
         android:id="@+id/addieren"
+        style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/subtrahieren"
         android:layout_alignBottom="@+id/subtrahieren"
         android:layout_alignLeft="@+id/multiplizieren"
+        android:layout_alignRight="@+id/multiplizieren"
+        android:layout_alignTop="@+id/subtrahieren"
+        
         android:minHeight="@dimen/Button_Hoehe"
         android:minWidth="@dimen/Button_Hoehe"
         android:onClick="addieren"
