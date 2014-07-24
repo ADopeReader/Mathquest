@@ -2,7 +2,9 @@ package paetow.seifert.mathquest;
 
 import java.util.Random;
 
+import paetow.seifert.mathquest.ZweiActivity.Rechenoperation;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,8 +14,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-
+public class DreiActivity extends Activity {
+	
 	private EditText startZahl;
 	private EditText zielZahl;
 	private TextView Ausgabe;
@@ -48,15 +50,13 @@ public class MainActivity extends Activity {
 	Rechenoperation berta;
 	Rechenoperation chris;
 	Rechenoperation doofie;
-
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);   //Mit dieser Methode wird das Benutzerinterface dargestellt
-
-
-		zugAnzahl = 4;                           //benoetigte Zuege vorgeben
+		setContentView(R.layout.activity_drei);
+		
+		zugAnzahl = 3;                           //benoetigte Zuege vorgeben
 		zugCounter = 0;
 
 
@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 		turn2 = (RadioButton)findViewById(R.id.zweiterZug);
 		turn3 = (RadioButton)findViewById(R.id.dritterZug);
 		turn4 = (RadioButton)findViewById(R.id.vierterZug);
-		turnDisplay = new RadioButton[zugAnzahl];
+		turnDisplay = new RadioButton[4];
 
 		//Array befuellen
 
@@ -149,7 +149,6 @@ public class MainActivity extends Activity {
 
 		
 		
-		
 
 		startZahl.setText(Startzahl);
 		zielZahl.setText(zuErreichen);
@@ -163,7 +162,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.drei, menu);
 		return true;
 	}
 
@@ -178,12 +177,15 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-
-
+	
+	
 	public void addieren(View Buttonclick) {
 
 		if (gameEnded == true){}
+		if (gameEnded ==true && ans==Goal){
+			Intent in3 = new Intent(this, MainActivity.class);
+			startActivity(in3);
+		}
 		else{
 		if (anton.toString()=="PLUS") 	ans = ans + plusZahl;
 		if (anton.toString()=="MINUS") ans = ans - plusZahl;
@@ -199,6 +201,10 @@ public class MainActivity extends Activity {
 	public void subtrahieren(View Buttonclick) {
 
 		if (gameEnded == true){}
+		if (gameEnded ==true && ans==Goal){
+			Intent in3 = new Intent(this, MainActivity.class);
+			startActivity(in3);
+		}
 		else{
 		if (berta.toString()=="PLUS") 	ans = ans + minusZahl;
 		if (berta.toString()=="MINUS") ans = ans - minusZahl;
@@ -212,6 +218,10 @@ public class MainActivity extends Activity {
 
 	public void multiplizieren (View Buttonclick) {
 		if (gameEnded == true){}
+		if (gameEnded ==true && ans==Goal){
+			Intent in3 = new Intent(this, MainActivity.class);
+			startActivity(in3);
+		}
 		else{
 		if (chris.toString()=="PLUS") 	ans = ans + malZahl;
 		if (chris.toString()=="MINUS") ans = ans - malZahl;
@@ -225,6 +235,10 @@ public class MainActivity extends Activity {
 
 	public void dividieren (View Buttonclick) {
 		if (gameEnded == true){}
+		if (gameEnded ==true && ans==Goal){
+			Intent in3 = new Intent(this, MainActivity.class);
+			startActivity(in3);
+		}
 		else{
 		if (doofie.toString()=="PLUS") 	ans = ans + teilZahl;
 		if (doofie.toString()=="MINUS") ans = ans - teilZahl;
@@ -245,7 +259,13 @@ public class MainActivity extends Activity {
 
 		turnDisplay[zugCounter-1].setChecked(true);
 
-		if (zugCounter == zugAnzahl && ans == Goal){Ausgabe.setText("Gewonnen!");gameEnded = true;}
+		if (zugCounter == zugAnzahl && ans == Goal){
+			Ausgabe.setText("Gewonnen!");gameEnded = true;
+			Plusbutton.setText("N");
+		    Minusbutton.setText("E");
+		    Malbutton.setText("X");
+		    Teilbutton.setText("T");
+			}
 		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");gameEnded = true;}
 
 	}
@@ -349,5 +369,4 @@ public class MainActivity extends Activity {
 		if (doofie.toString()=="TEIL") Goal = Goal / teilZahl;
 		
 	}
-	
 }

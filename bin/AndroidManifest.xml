@@ -16,11 +16,27 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".EinsActivity"
+            android:label="@string/title_activity_eins" >
+        </activity>
+        <activity
+            android:name=".ZweiActivity"
+            android:label="@string/title_activity_zwei" >
+        </activity>
+        <activity
+            android:name=".DreiActivity"
+            android:label="@string/title_activity_drei" >
         </activity>
     </application>
 

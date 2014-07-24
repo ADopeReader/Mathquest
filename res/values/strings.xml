@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
 
     <string name="app_name">mathquest</string>
     <string name="Start">Startzahl</string>
@@ -13,6 +13,11 @@
     <string name="Ergebnis">Ergebnis</string>
     <string name="Ergebnisanzeige">0</string>
     <string name="reset">reset</string>
-    
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Los">Und los...</string>
+    <string name="title_activity_eins">EinsActivity</string>
+    <string name="title_activity_zwei">ZweiActivity</string>
+    <string name="title_activity_drei">DreiActivity</string>
 
 </resources>
