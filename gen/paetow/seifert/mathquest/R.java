@@ -37,23 +37,24 @@ public final class R {
         public static final int plus=0x7f020004;
     }
     public static final class id {
-        public static final int Ergebnisanzeige=0x7f080008;
+        public static final int Ergebnisanzeige=0x7f08000a;
         public static final int Goal=0x7f080004;
-        public static final int Startzahl=0x7f080005;
-        public static final int action_settings=0x7f080010;
-        public static final int addieren=0x7f080001;
-        public static final int button1=0x7f08000f;
-        public static final int dividieren=0x7f080006;
-        public static final int dritterZug=0x7f08000c;
-        public static final int ersterZug=0x7f08000a;
-        public static final int multiplizieren=0x7f080003;
-        public static final int reset=0x7f08000e;
-        public static final int subtrahieren=0x7f080002;
-        public static final int textView1=0x7f080007;
-        public static final int textView2=0x7f080000;
+        public static final int LinearLayout1=0x7f080000;
+        public static final int LinearLayout2=0x7f080010;
+        public static final int Startzahl=0x7f080003;
+        public static final int action_settings=0x7f080011;
+        public static final int addieren=0x7f080005;
+        public static final int dividieren=0x7f080008;
+        public static final int dritterZug=0x7f08000d;
+        public static final int ersterZug=0x7f08000b;
+        public static final int multiplizieren=0x7f080007;
+        public static final int reset=0x7f08000f;
+        public static final int subtrahieren=0x7f080006;
+        public static final int textView1=0x7f080002;
+        public static final int textView2=0x7f080001;
         public static final int textView3=0x7f080009;
-        public static final int vierterZug=0x7f08000d;
-        public static final int zweiterZug=0x7f08000b;
+        public static final int vierterZug=0x7f08000e;
+        public static final int zweiterZug=0x7f08000c;
     }
     public static final class layout {
         public static final int activity_drei=0x7f030000;

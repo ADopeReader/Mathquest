@@ -122,7 +122,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
         android:layout_alignLeft="@+id/textView3"
-        android:minHeight="@dimen/Button_Hoehe"
         android:minWidth="@dimen/Button_Hoehe"
         android:onClick="multiplizieren"
         android:paddingBottom="1dp"
