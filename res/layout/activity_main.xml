@@ -20,7 +20,7 @@
         android:textSize="@dimen/normale_groesse" />
 
     <Button
-        android:id="@+id/addieren"
+        android:id="@+id/spielStarten"
         style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_alignBaseline="@+id/Startzahl"
         android:layout_alignBottom="@+id/Startzahl"
         android:layout_marginLeft="31dp"
-        android:layout_toRightOf="@+id/addieren"
+        android:layout_toRightOf="@+id/spielStarten"
         android:ems="4"
         android:inputType="numberDecimal" />
 
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_alignRight="@+id/addieren"
+        android:layout_alignRight="@+id/spielStarten"
         android:layout_below="@+id/textView2"
         android:ems="4"
         android:inputType="numberDecimal" >

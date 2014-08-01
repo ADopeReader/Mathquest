@@ -8,16 +8,19 @@
     <string name="Buttonminus">-</string>
     <string name="Buttongeteilt">/</string>
     <string name="Buttonmal">*</string>
-    <string name="action_settings">Wo stehe ich?</string>
+    <string name="menu_levelEins">Level 1</string>
     <string name="ausgabe">0</string>
     <string name="Ergebnis">Ergebnis</string>
     <string name="Ergebnisanzeige">0</string>
     <string name="reset">reset</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="Los">Und los...</string>
     <string name="title_activity_eins">EinsActivity</string>
     <string name="title_activity_zwei">ZweiActivity</string>
     <string name="title_activity_drei">DreiActivity</string>
+    <string name="menu_levelZwei">Level 2</string>
+    <string name="menu_levelDrei">Level 3</string>
+    <string name="menu_levelVier">Level 4</string>
+    <string name="spielStarten">Spiel starten</string>
 
 </resources>

@@ -28,6 +28,7 @@ public class EinsActivity extends Activity {
 	private Button Minusbutton;
 	private Button Malbutton;
 	private Button Teilbutton;
+	private int levelCounter;
 
 	private int ans;
 	private int Start;
@@ -54,20 +55,24 @@ public class EinsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_eins);
+		setContentView(R.layout.activity_main);
 		
+		
+		levelCounter = 1;              //Beim Starten der Aktivity wird mit Level 1 gestartet
+		
+
 		zugAnzahl = 1;                           //benoetigte Zuege vorgeben
-		zugCounter = 0;
+		zugCounter = 0;                          //Zugzaehler auf Null setzen
+		gameEnded = false;
 
 
-
-		turn1 = (RadioButton)findViewById(R.id.ersterZug);
+		turn1 = (RadioButton)findViewById(R.id.ersterZug);     //Radio Buttons initialisieren
 		turn2 = (RadioButton)findViewById(R.id.zweiterZug);
 		turn3 = (RadioButton)findViewById(R.id.dritterZug);
 		turn4 = (RadioButton)findViewById(R.id.vierterZug);
 		turnDisplay = new RadioButton[4];
 
-		//Array befuellen
+		//Array mit Radio Buttons befuellen
 
 		turnDisplay[0] = turn1;
 		turnDisplay[1] = turn2;
@@ -75,18 +80,43 @@ public class EinsActivity extends Activity {
 		turnDisplay[3] = turn4;
 
 
-		gameEnded = false;
-
-		//Eingabefelder initialisieren
+		//Buttons initialisieren
 		startZahl = (EditText) findViewById(R.id.Startzahl);
 		zielZahl = (EditText) findViewById(R.id.Goal);
 		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-		Plusbutton = (Button) findViewById(R.id.addieren);
+		Plusbutton = (Button) findViewById(R.id.spielStarten);
 		Minusbutton = (Button) findViewById(R.id.subtrahieren);
 		Malbutton = (Button) findViewById(R.id.multiplizieren);
 		Teilbutton = (Button) findViewById(R.id.dividieren);
 
+		
+   loadLevel();    //generiert das Interface abhaengig vom Spiellevel
+		
+	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.eins, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.menuPunktEins) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	
+	
+	public void loadLevel ()    //Generieren der Spielvariablen und laden des Interface abhaengig vom Level
+	{
 		// Zufahlszahlen zuweisen
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
@@ -115,69 +145,57 @@ public class EinsActivity extends Activity {
 
 		// Textfelder zuweisen
 		
-		ans = Start;
-		String Startzahl = String.valueOf(Start);
-		String zuErreichen = String.valueOf(Goal);
-		String zwischenErgebnis = String.valueOf(ans);
+				ans = Start;
+				String Startzahl = String.valueOf(Start);
+				String zuErreichen = String.valueOf(Goal);
+				String zwischenErgebnis = String.valueOf(ans);
 
-		String plus = String.valueOf(plusZahl);
-		String minus = String.valueOf(minusZahl);
-		String mal = String.valueOf(malZahl);
-		String teil = String.valueOf(teilZahl);
+				String plus = String.valueOf(plusZahl);
+				String minus = String.valueOf(minusZahl);
+				String mal = String.valueOf(malZahl);
+				String teil = String.valueOf(teilZahl);
 
-		
-		//Buttons das jeweilige Drawable zuordnen
-		if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
-		if (anton.toString()=="MINUS") Plusbutton.setBackgroundResource(R.drawable.minus);
-		if (anton.toString()=="MAL") 	Plusbutton.setBackgroundResource(R.drawable.mal);
-		if (anton.toString()=="TEIL") Plusbutton.setBackgroundResource(R.drawable.geteilt);
-		
-		if (berta.toString()=="PLUS") Minusbutton.setBackgroundResource(R.drawable.plus);
-		if (berta.toString()=="MINUS") Minusbutton.setBackgroundResource(R.drawable.minus);
-		if (berta.toString()=="MAL") 	Minusbutton.setBackgroundResource(R.drawable.mal);
-		if (berta.toString()=="TEIL") Minusbutton.setBackgroundResource(R.drawable.geteilt);
-		
-		if (chris.toString()=="PLUS") Malbutton.setBackgroundResource(R.drawable.plus);
-		if (chris.toString()=="MINUS") Malbutton.setBackgroundResource(R.drawable.minus);
-		if (chris.toString()=="MAL") 	Malbutton.setBackgroundResource(R.drawable.mal);
-		if (chris.toString()=="TEIL") Malbutton.setBackgroundResource(R.drawable.geteilt);
-		
-		if (doofie.toString()=="PLUS") Teilbutton.setBackgroundResource(R.drawable.plus);
-		if (doofie.toString()=="MINUS") Teilbutton.setBackgroundResource(R.drawable.minus);
-		if (doofie.toString()=="MAL") 	Teilbutton.setBackgroundResource(R.drawable.mal);
-		if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
+				
+				//Buttons das jeweilige Drawable zuordnen
+				if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
+				if (anton.toString()=="MINUS") Plusbutton.setBackgroundResource(R.drawable.minus);
+				if (anton.toString()=="MAL") 	Plusbutton.setBackgroundResource(R.drawable.mal);
+				if (anton.toString()=="TEIL") Plusbutton.setBackgroundResource(R.drawable.geteilt);
+				
+				if (berta.toString()=="PLUS") Minusbutton.setBackgroundResource(R.drawable.plus);
+				if (berta.toString()=="MINUS") Minusbutton.setBackgroundResource(R.drawable.minus);
+				if (berta.toString()=="MAL") 	Minusbutton.setBackgroundResource(R.drawable.mal);
+				if (berta.toString()=="TEIL") Minusbutton.setBackgroundResource(R.drawable.geteilt);
+				
+				if (chris.toString()=="PLUS") Malbutton.setBackgroundResource(R.drawable.plus);
+				if (chris.toString()=="MINUS") Malbutton.setBackgroundResource(R.drawable.minus);
+				if (chris.toString()=="MAL") 	Malbutton.setBackgroundResource(R.drawable.mal);
+				if (chris.toString()=="TEIL") Malbutton.setBackgroundResource(R.drawable.geteilt);
+				
+				if (doofie.toString()=="PLUS") Teilbutton.setBackgroundResource(R.drawable.plus);
+				if (doofie.toString()=="MINUS") Teilbutton.setBackgroundResource(R.drawable.minus);
+				if (doofie.toString()=="MAL") 	Teilbutton.setBackgroundResource(R.drawable.mal);
+				if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
 
-		
-		
+				
+				
 
-		startZahl.setText(Startzahl);
-		zielZahl.setText(zuErreichen);
-	    Ausgabe.setText(zwischenErgebnis); 
-	    Plusbutton.setText(plus);
-	    Minusbutton.setText(minus);
-	    Malbutton.setText(mal);
-	    Teilbutton.setText(teil);
+				startZahl.setText(Startzahl);
+				zielZahl.setText(zuErreichen);
+			    Ausgabe.setText(zwischenErgebnis); 
+			    Plusbutton.setText(plus);
+			    Minusbutton.setText(minus);
+			    Malbutton.setText(mal);
+			    Teilbutton.setText(teil);
+				
 		
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.eins, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	
+	
+	
+	
+	
+	
 	
 	public void addieren(View Buttonclick) {
 
@@ -370,4 +388,31 @@ public class EinsActivity extends Activity {
 		if (doofie.toString()=="TEIL") Goal = Goal / teilZahl;
 		
 	}
+	
+	public void levelEins_starten (View Buttonclick)
+	{
+		levelCounter = 1;
+		loadLevel();
+	}
+	
+	public void levelZwei_starten (View Buttonclick)
+	{
+		levelCounter = 2;
+		loadLevel();
+	}
+	
+	public void levelDrei_starten (View Buttonclick)
+	{
+		levelCounter = 3;
+		loadLevel();
+	}
+	
+	public void levelVier_starten (View Buttonclick)
+	{
+		levelCounter = 4;
+		loadLevel();
+		
+	}
+	
+	
 }

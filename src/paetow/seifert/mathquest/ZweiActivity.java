@@ -54,7 +54,7 @@ public class ZweiActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_zwei);
+		setContentView(R.layout.activity_main);
 		
 		zugAnzahl = 2;                           //benoetigte Zuege vorgeben
 		zugCounter = 0;
@@ -81,7 +81,7 @@ public class ZweiActivity extends Activity {
 		startZahl = (EditText) findViewById(R.id.Startzahl);
 		zielZahl = (EditText) findViewById(R.id.Goal);
 		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-		Plusbutton = (Button) findViewById(R.id.addieren);
+		Plusbutton = (Button) findViewById(R.id.spielStarten);
 		Minusbutton = (Button) findViewById(R.id.subtrahieren);
 		Malbutton = (Button) findViewById(R.id.multiplizieren);
 		Teilbutton = (Button) findViewById(R.id.dividieren);
