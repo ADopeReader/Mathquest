@@ -197,7 +197,13 @@ public class EinsActivity extends Activity {
 	}
 	
 	
-	
+	public void nextLevel()
+	{
+		 levelCounter ++;
+		 for (int i= 0; i< turnDisplay.length;i++){turnDisplay[i].setChecked(false);}
+		 loadLevel();
+		
+	}
 	
 	
 	
@@ -207,7 +213,7 @@ public class EinsActivity extends Activity {
 		if (gameEnded == true) {}
 		if (gameEnded == true && levelCounter == 4){}
 		else if(gameEnded == true && ans == Goal){
-			 levelCounter ++;loadLevel();
+			nextLevel();
 		}
 		else{
 		if (anton.toString()=="PLUS") 	ans = ans + plusZahl;
@@ -226,8 +232,7 @@ public class EinsActivity extends Activity {
 		if (gameEnded == true) {}
 		if (gameEnded == true && levelCounter == 4){}
 		else if(gameEnded == true && ans == Goal){
-			 levelCounter ++;loadLevel();
-		}
+			nextLevel();		}
 		else{
 		if (berta.toString()=="PLUS") 	ans = ans + minusZahl;
 		if (berta.toString()=="MINUS") ans = ans - minusZahl;
@@ -243,7 +248,7 @@ public class EinsActivity extends Activity {
 		if (gameEnded == true) {}
 		if (gameEnded == true && levelCounter == 4){}
 		else if(gameEnded == true && ans == Goal){
-			 levelCounter ++;loadLevel();
+			nextLevel();
 		}
 		else{
 		if (chris.toString()=="PLUS") 	ans = ans + malZahl;
@@ -260,7 +265,7 @@ public class EinsActivity extends Activity {
 		if (gameEnded == true) {}
 		if (gameEnded == true && levelCounter == 4){}
 		else if(gameEnded == true && ans == Goal){
-			 levelCounter ++;loadLevel();
+			nextLevel();
 		}
 		else{
 		if (doofie.toString()=="PLUS") 	ans = ans + teilZahl;
