@@ -2,9 +2,8 @@ package paetow.seifert.mathquest;
 
 import java.util.Random;
 
-import paetow.seifert.mathquest.MainActivity.Rechenoperation;
+
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -142,6 +141,7 @@ public class EinsActivity extends Activity {
 		//Zielzahl berechnen
 		
 		Goal = zielen();
+		
 
 		// Textfelder zuweisen
 		
@@ -155,6 +155,7 @@ public class EinsActivity extends Activity {
 				String mal = String.valueOf(malZahl);
 				String teil = String.valueOf(teilZahl);
 
+				
 				
 				//Buttons das jeweilige Drawable zuordnen
 				if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
@@ -188,6 +189,10 @@ public class EinsActivity extends Activity {
 			    Malbutton.setText(mal);
 			    Teilbutton.setText(teil);
 				
+			    if (levelCounter == 1){zugAnzahl = 1;}
+			    if (levelCounter == 2){zugAnzahl = 2;}
+			    if (levelCounter == 3){zugAnzahl = 3;}
+			    if (levelCounter == 4){zugAnzahl = 4;}
 		
 	}
 	
@@ -200,9 +205,9 @@ public class EinsActivity extends Activity {
 	public void addieren(View Buttonclick) {
 
 		if (gameEnded == true) {}
-		if (gameEnded == true && ans == Goal){
-			Intent in1 = new Intent(this, ZweiActivity.class);
-			startActivity(in1);
+		if (gameEnded == true && levelCounter == 4){}
+		else if(gameEnded == true && ans == Goal){
+			 levelCounter ++;loadLevel();
 		}
 		else{
 		if (anton.toString()=="PLUS") 	ans = ans + plusZahl;
@@ -219,9 +224,9 @@ public class EinsActivity extends Activity {
 	public void subtrahieren(View Buttonclick) {
 		
 		if (gameEnded == true) {}
-		if (gameEnded == true && ans == Goal){
-			Intent in1 = new Intent(this, ZweiActivity.class);
-			startActivity(in1);
+		if (gameEnded == true && levelCounter == 4){}
+		else if(gameEnded == true && ans == Goal){
+			 levelCounter ++;loadLevel();
 		}
 		else{
 		if (berta.toString()=="PLUS") 	ans = ans + minusZahl;
@@ -236,9 +241,9 @@ public class EinsActivity extends Activity {
 
 	public void multiplizieren (View Buttonclick) {
 		if (gameEnded == true) {}
-		if (gameEnded == true && ans == Goal){
-			Intent in1 = new Intent(this, ZweiActivity.class);
-			startActivity(in1);
+		if (gameEnded == true && levelCounter == 4){}
+		else if(gameEnded == true && ans == Goal){
+			 levelCounter ++;loadLevel();
 		}
 		else{
 		if (chris.toString()=="PLUS") 	ans = ans + malZahl;
@@ -253,9 +258,9 @@ public class EinsActivity extends Activity {
 
 	public void dividieren (View Buttonclick) {
 		if (gameEnded == true) {}
-		if (gameEnded == true && ans == Goal){
-			Intent in1 = new Intent(this, ZweiActivity.class);
-			startActivity(in1);
+		if (gameEnded == true && levelCounter == 4){}
+		else if(gameEnded == true && ans == Goal){
+			 levelCounter ++;loadLevel();
 		}
 		else{
 		if (doofie.toString()=="PLUS") 	ans = ans + teilZahl;
@@ -286,7 +291,7 @@ public class EinsActivity extends Activity {
 			}
 		
 		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");gameEnded = true;}
-
+        
 	}
 
 
