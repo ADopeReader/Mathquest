@@ -200,6 +200,8 @@ public class EinsActivity extends Activity {
 	public void nextLevel()
 	{
 		 levelCounter ++;
+		 gameEnded = false;
+			zugCounter = 0;
 		 for (int i= 0; i< turnDisplay.length;i++){turnDisplay[i].setChecked(false);}
 		 loadLevel();
 		
