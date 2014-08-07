@@ -116,6 +116,17 @@ public class EinsActivity extends Activity {
 	
 	public void loadLevel ()    //Generieren der Spielvariablen und laden des Interface abhaengig vom Level
 	{
+		
+		//Levelabhängige Werte zuweisen
+		
+		if (levelCounter == 1){zugAnzahl = 1;}
+	    if (levelCounter == 2){zugAnzahl = 2;turn2.setEnabled(true);}
+	    if (levelCounter == 3){zugAnzahl = 3;turn3.setEnabled(true);}
+	    if (levelCounter == 4){zugAnzahl = 4;turn4.setEnabled(true);}
+	    
+		
+	
+		
 		// Zufahlszahlen zuweisen
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
@@ -138,6 +149,11 @@ public class EinsActivity extends Activity {
 		chris = Rechenoperation.getEnumByValue(buttonC);
 		doofie = Rechenoperation.getEnumByValue(buttonD);
 		
+		
+		
+
+	    
+	    
 		//Zielzahl berechnen
 		
 		Goal = zielen();
@@ -189,10 +205,7 @@ public class EinsActivity extends Activity {
 			    Malbutton.setText(mal);
 			    Teilbutton.setText(teil);
 				
-			    if (levelCounter == 1){zugAnzahl = 1;}
-			    if (levelCounter == 2){zugAnzahl = 2;turn2.setEnabled(true);}
-			    if (levelCounter == 3){zugAnzahl = 3;turn3.setEnabled(true);}
-			    if (levelCounter == 4){zugAnzahl = 4;turn4.setEnabled(true);}
+			    
 		
 	}
 	
@@ -287,6 +300,7 @@ public class EinsActivity extends Activity {
 
 		zugCounter++;
 
+
 		turnDisplay[zugCounter-1].setChecked(true);
 
 		if (zugCounter == zugAnzahl && ans == Goal){
@@ -303,6 +317,7 @@ public class EinsActivity extends Activity {
 
 
 	public void reset(View Buttonclick){
+		if (Plusbutton.getText()!= "N"){
 		gameEnded = false;
 		zugCounter = 0;
 		ans = Start;
@@ -310,7 +325,7 @@ public class EinsActivity extends Activity {
 		 Ausgabe.setText(zwischenErgebnis); 
 
 		for (int i= 0; i< turnDisplay.length;i++){turnDisplay[i].setChecked(false);}
-
+		}
 
 	}
 
