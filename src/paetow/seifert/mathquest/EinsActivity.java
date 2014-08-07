@@ -190,9 +190,9 @@ public class EinsActivity extends Activity {
 			    Teilbutton.setText(teil);
 				
 			    if (levelCounter == 1){zugAnzahl = 1;}
-			    if (levelCounter == 2){zugAnzahl = 2;}
-			    if (levelCounter == 3){zugAnzahl = 3;}
-			    if (levelCounter == 4){zugAnzahl = 4;}
+			    if (levelCounter == 2){zugAnzahl = 2;turn2.setEnabled(true);}
+			    if (levelCounter == 3){zugAnzahl = 3;turn3.setEnabled(true);}
+			    if (levelCounter == 4){zugAnzahl = 4;turn4.setEnabled(true);}
 		
 	}
 	
