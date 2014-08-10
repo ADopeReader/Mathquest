@@ -96,7 +96,7 @@ public class EinsActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-	//	getMenuInflater().inflate(R.menu.eins, menu);
+	    getMenuInflater().inflate(R.menu.eins, menu);
 		return true;
 	}
 
@@ -105,11 +105,33 @@ public class EinsActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-	//	int id = item.getItemId();
-		//if (id == R.id.menuPunktEins) {
-		//	return true;
-		//}
-		return super.onOptionsItemSelected(item);
+	   
+	    switch (item.getItemId()) {
+	    
+	    case R.id.hauptMenu:
+	    	//intent fuer Menue Acitivity einfuegen
+	    	return true;
+        case R.id.menuPunktEins:
+        	levelEins_starten();
+            return true;
+        case R.id.menuPunktZwei:
+            levelZwei_starten();
+            return true;
+        case R.id.menuPunktDrei:
+        levelDrei_starten();
+        return true;
+        case R.id.menuPunktVier:
+        levelVier_starten();
+        return true;
+        /*
+        case R.id.menuPunktFuenf:
+            levelFuenf_starten();
+            return true;
+            */
+        
+        default:
+            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	
@@ -117,7 +139,7 @@ public class EinsActivity extends Activity {
 	public void loadLevel ()    //Generieren der Spielvariablen und laden des Interface abhaengig vom Level
 	{
 		
-		//Levelabhängige Werte zuweisen
+		//Levelabhaengige Werte zuweisen
 		
 		if (levelCounter == 1){zugAnzahl = 1;}
 	    if (levelCounter == 2){zugAnzahl = 2;turn2.setEnabled(true);}
@@ -416,30 +438,37 @@ public class EinsActivity extends Activity {
 		
 	}
 	
-	public void levelEins_starten (View Buttonclick)
+	public void levelEins_starten ()
 	{
 		levelCounter = 1;
 		loadLevel();
 	}
 	
-	public void levelZwei_starten (View Buttonclick)
+	public void levelZwei_starten ()
 	{
 		levelCounter = 2;
 		loadLevel();
 	}
 	
-	public void levelDrei_starten (View Buttonclick)
+	public void levelDrei_starten ()
 	{
 		levelCounter = 3;
 		loadLevel();
 	}
 	
-	public void levelVier_starten (View Buttonclick)
+	public void levelVier_starten ()
 	{
 		levelCounter = 4;
 		loadLevel();
 		
 	}
 	
+	/*
+	public void levelFuenf_starten()
+	{
+		levelCounter = 5;
+		loadLevel();	
+	}
+	*/
 	
 }

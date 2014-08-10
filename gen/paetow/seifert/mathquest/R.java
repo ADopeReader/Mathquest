@@ -47,6 +47,7 @@ public final class R {
         public static final int dividieren=0x7f080006;
         public static final int dritterZug=0x7f08000c;
         public static final int ersterZug=0x7f08000a;
+        public static final int hauptMenu=0x7f080015;
         public static final int menuPunktDrei=0x7f080013;
         public static final int menuPunktEins=0x7f080011;
         public static final int menuPunktVier=0x7f080014;
@@ -80,6 +81,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int ausgabe=0x7f050008;
         public static final int hello_world=0x7f05000d;
+        public static final int menu_hauptMenu=0x7f050015;
         public static final int menu_levelDrei=0x7f050012;
         public static final int menu_levelEins=0x7f050007;
         public static final int menu_levelVier=0x7f050013;
@@ -92,10 +94,9 @@ public final class R {
         public static final int title_activity_zwei=0x7f05000f;
     }
     public static final class strings {
-        public static final int menu_levelDrei=0x7f090002;
-        public static final int menu_levelEins=0x7f090000;
-        public static final int menu_levelVier=0x7f090003;
-        public static final int menu_levelZwei=0x7f090001;
+        public static final int menu_levelDrei=0x7f090001;
+        public static final int menu_levelVier=0x7f090002;
+        public static final int menu_levelZwei=0x7f090000;
     }
     public static final class style {
         /** 

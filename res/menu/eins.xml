@@ -2,33 +2,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="paetow.seifert.mathquest.EinsActivity" >
 
+    
+
+
     <item
         android:id="@+id/menuPunktEins"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@+strings/menu_levelEins"
-        android:onClick="levelEins_starten"/>
+        android:showAsAction="withText"
+        android:title="@+string/menu_levelEins"
+  />
     
     <item 
         android:id="@+id/menuPunktZwei"
-        android:orderInCategory="200"
-        android:showAsAction="never"
+        android:showAsAction="withText"
         android:title="@+strings/menu_levelZwei"
-        android:onClick="levelZwei_starten"/>
+/>
     
     <item 
         android:id="@+id/menuPunktDrei"
-        android:orderInCategory="200"
-        android:showAsAction="never"
+        android:showAsAction="withText"
         android:title="@+strings/menu_levelDrei"
-        android:onClick="levelDrei_starten"/>
+/>
     
     <item 
         android:id="@+id/menuPunktVier"
-        android:orderInCategory="200"
-        android:showAsAction="never"
+        android:showAsAction="withText"
         android:title="@+strings/menu_levelVier"
-        android:onClick="levelVier_starten"/>
+        
+/>
+    <item android:id="@+id/hauptMenu" android:title="@string/menu_hauptMenu" android:icon="@drawable/plus" android:showAsAction="ifRoom"></item>
     
         
         

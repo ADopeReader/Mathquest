@@ -22,5 +22,6 @@
     <string name="menu_levelDrei">Level 3</string>
     <string name="menu_levelVier">Level 4</string>
     <string name="spielStarten">Spiel starten</string>
+    <string name="menu_hauptMenu">Hauptmenü</string>
 
 </resources>
