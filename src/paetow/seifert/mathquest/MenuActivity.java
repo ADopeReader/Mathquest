@@ -1,5 +1,6 @@
 package paetow.seifert.mathquest;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ public class MenuActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
 	}
 
 	@Override

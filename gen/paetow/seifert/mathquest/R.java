@@ -30,11 +30,13 @@ public final class R {
         public static final int normale_groesse=0x7f040002;
     }
     public static final class drawable {
-        public static final int geteilt=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int mal=0x7f020002;
-        public static final int minus=0x7f020003;
-        public static final int plus=0x7f020004;
+        public static final int activitybackground=0x7f020000;
+        public static final int backgrounddesign=0x7f020001;
+        public static final int geteilt=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int mal=0x7f020004;
+        public static final int minus=0x7f020005;
+        public static final int plus=0x7f020006;
     }
     public static final class id {
         public static final int Ergebnisanzeige=0x7f080008;
