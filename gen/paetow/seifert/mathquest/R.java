@@ -48,9 +48,10 @@ public final class R {
         public static final int dritterZug=0x7f08000c;
         public static final int ersterZug=0x7f08000a;
         public static final int fuenfterZug=0x7f08000e;
-        public static final int hauptMenu=0x7f080016;
+        public static final int hauptMenu=0x7f080017;
         public static final int menuPunktDrei=0x7f080014;
         public static final int menuPunktEins=0x7f080012;
+        public static final int menuPunktFuenf=0x7f080016;
         public static final int menuPunktVier=0x7f080015;
         public static final int menuPunktZwei=0x7f080013;
         public static final int multiplizieren=0x7f080003;
@@ -96,6 +97,7 @@ public final class R {
     }
     public static final class strings {
         public static final int menu_levelDrei=0x7f090001;
+        public static final int menu_levelFuenf=0x7f090003;
         public static final int menu_levelVier=0x7f090002;
         public static final int menu_levelZwei=0x7f090000;
     }

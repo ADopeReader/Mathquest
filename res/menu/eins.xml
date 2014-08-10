@@ -25,6 +25,13 @@ android:menuCategory="container" android:orderInCategory="3"/>
         android:title="@+strings/menu_levelVier"
         
 android:menuCategory="container" android:orderInCategory="4"/>
+    
+        <item 
+        android:id="@+id/menuPunktFuenf"
+        android:title="@+strings/menu_levelFuenf"
+android:menuCategory="container" android:orderInCategory="3"/>
+        
+        
     <item android:id="@+id/hauptMenu" 
         android:title="@string/menu_hauptMenu" 
         android:icon="@drawable/plus" 

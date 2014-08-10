@@ -34,7 +34,6 @@ public class EinsActivity extends Activity {
 	private int ans;
 	private int Start;
 	private int Goal;
-	private int zugAnzahl;
 	private int zugCounter;
 
 	int plusZahl; 
@@ -62,7 +61,6 @@ public class EinsActivity extends Activity {
 		levelCounter = 1;              //Beim Starten der Aktivity wird mit Level 1 gestartet
 		
 
-		zugAnzahl = 1;                           //benoetigte Zuege vorgeben
 		zugCounter = 0;                          //Zugzaehler auf Null setzen
 		gameEnded = false;
 
@@ -129,7 +127,7 @@ public class EinsActivity extends Activity {
         	levelVier_starten();
         	return true;
         
-        case R.id.fuenfterZug:
+        case R.id.menuPunktFuenf:
             levelFuenf_starten();
             return true;
             
@@ -146,12 +144,13 @@ public class EinsActivity extends Activity {
 		
 		//Levelabhaenngige Werte zuweisen
 		
-		if (levelCounter == 1){zugAnzahl = 1;}
-	    if (levelCounter == 2){zugAnzahl = 2;turn2.setEnabled(true);}
-	    if (levelCounter == 3){zugAnzahl = 3;turn3.setEnabled(true);}
-	    if (levelCounter == 4){zugAnzahl = 4;turn4.setEnabled(true);}
-	    if (levelCounter == 5){zugAnzahl = 5;turn5.setEnabled(true);}
-	    
+		for (int i = 0; i < levelCounter; i++){
+			turnDisplay[i].setEnabled(true);
+		}
+		for (int i = levelCounter; i < turnDisplay.length; i++){
+			turnDisplay[i].setEnabled(false);
+		}
+		
 		
 	
 		
@@ -159,28 +158,31 @@ public class EinsActivity extends Activity {
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
 		Goal = Start;
+		Zufall.setSeed(System.currentTimeMillis());
 
 		plusZahl = Zufall.nextInt(8)+1;
 		minusZahl = Zufall.nextInt(8)+1;
 		malZahl = Zufall.nextInt(8)+1;
-		teilZahl = Zufall.nextInt(8)+1;;
+		teilZahl = Zufall.nextInt(14)+1;;
 
 
 		// Button Enums
-		buttonA= Zufall.nextInt(3);
-		buttonB= Zufall.nextInt(3);
-		buttonC= Zufall.nextInt(3);
-		buttonD= Zufall.nextInt(3);
+		buttonA= Zufall.nextInt(4);
+		buttonB= Zufall.nextInt(4);
+		buttonC= Zufall.nextInt(4);
+		buttonD= Zufall.nextInt(4);
 
 		anton = Rechenoperation.getEnumByValue(buttonA);
 		berta = Rechenoperation.getEnumByValue(buttonB);
 		chris = Rechenoperation.getEnumByValue(buttonC);
 		doofie = Rechenoperation.getEnumByValue(buttonD);
-	
+		
 	    
 	   	//Zielzahl berechnen
-		
+		do {
 		Goal = zielen();
+		}
+		while(Goal == 0);
 		
 
 		// Textfelder zuweisen
@@ -216,9 +218,7 @@ public class EinsActivity extends Activity {
 		if (doofie.toString()=="MINUS") Teilbutton.setBackgroundResource(R.drawable.minus);
 		if (doofie.toString()=="MAL") 	Teilbutton.setBackgroundResource(R.drawable.mal);
 		if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
-
-				
-				
+	
 
 		startZahl.setText(Startzahl);
 		zielZahl.setText(zuErreichen);
@@ -326,7 +326,6 @@ public class EinsActivity extends Activity {
 
 
 
-
 	private void ziehen (){
 
 		zugCounter++;
@@ -334,7 +333,7 @@ public class EinsActivity extends Activity {
 
 		turnDisplay[zugCounter-1].setChecked(true);
 
-		if (zugCounter == zugAnzahl && ans == Goal){
+		if (zugCounter == levelCounter && ans == Goal){
 			Ausgabe.setText("Gewonnen!");gameEnded = true;
 			Plusbutton.setText("N");
 		    Minusbutton.setText("E");
@@ -342,7 +341,7 @@ public class EinsActivity extends Activity {
 		    Teilbutton.setText("T");
 			}
 		
-		if (zugCounter == zugAnzahl && ans != Goal){
+		if (zugCounter == levelCounter && ans != Goal){
 			Ausgabe.setText("Verloren!");gameEnded = true;
 			}
         
@@ -399,8 +398,8 @@ public class EinsActivity extends Activity {
 		
 		Random Zufall = new Random();
 
-		for( int i=0; i<zugAnzahl; i++){
-			int dynamik = Zufall.nextInt(3);
+		for( int i=0; i<levelCounter; i++){
+			int dynamik = Zufall.nextInt(4);
 		
 			if (dynamik==0){
 				plus();
@@ -462,24 +461,32 @@ public class EinsActivity extends Activity {
 	public void levelEins_starten ()
 	{
 		levelCounter = 1;
+		for (int i= 0; i< turnDisplay.length;i++)
+		{turnDisplay[i].setChecked(false);}
 		loadLevel();
 	}
 	
 	public void levelZwei_starten ()
 	{
 		levelCounter = 2;
+		for (int i= 0; i< turnDisplay.length;i++)
+		{turnDisplay[i].setChecked(false);}
 		loadLevel();
 	}
 	
 	public void levelDrei_starten ()
 	{
 		levelCounter = 3;
+		for (int i= 0; i< turnDisplay.length;i++)
+		{turnDisplay[i].setChecked(false);}
 		loadLevel();
 	}
 	
 	public void levelVier_starten ()
 	{
 		levelCounter = 4;
+		for (int i= 0; i< turnDisplay.length;i++)
+		{turnDisplay[i].setChecked(false);}
 		loadLevel();
 		
 	}
@@ -487,9 +494,8 @@ public class EinsActivity extends Activity {
 	public void levelFuenf_starten()
 	{
 		levelCounter = 5;
+		for (int i= 0; i< turnDisplay.length;i++)
+		{turnDisplay[i].setChecked(false);}
 		loadLevel();	
-	}
-
-	
-	
+	}	
 }
