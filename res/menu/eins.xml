@@ -7,29 +7,28 @@
 
     <item
         android:id="@+id/menuPunktEins"
-        android:showAsAction="withText"
         android:title="@+string/menu_levelEins"
-  />
+  android:menuCategory="container" android:orderInCategory="1"/>
     
     <item 
         android:id="@+id/menuPunktZwei"
-        android:showAsAction="withText"
         android:title="@+strings/menu_levelZwei"
-/>
+android:menuCategory="container" android:orderInCategory="2"/>
     
     <item 
         android:id="@+id/menuPunktDrei"
-        android:showAsAction="withText"
         android:title="@+strings/menu_levelDrei"
-/>
+android:menuCategory="container" android:orderInCategory="3"/>
     
     <item 
         android:id="@+id/menuPunktVier"
-        android:showAsAction="withText"
         android:title="@+strings/menu_levelVier"
         
-/>
-    <item android:id="@+id/hauptMenu" android:title="@string/menu_hauptMenu" android:icon="@drawable/plus" android:showAsAction="ifRoom"></item>
+android:menuCategory="container" android:orderInCategory="4"/>
+    <item android:id="@+id/hauptMenu" 
+        android:title="@string/menu_hauptMenu" 
+        android:icon="@drawable/plus" 
+        android:showAsAction="ifRoom" android:menuCategory="system"></item>
     
         
         

@@ -4,6 +4,7 @@ import java.util.Random;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ public class EinsActivity extends Activity {
 	private RadioButton turn2;
 	private RadioButton turn3;
 	private RadioButton turn4;
+	private RadioButton turn5;
 	private RadioButton [] turnDisplay;
 	private Button Plusbutton;
 	private Button Minusbutton;
@@ -69,7 +71,8 @@ public class EinsActivity extends Activity {
 		turn2 = (RadioButton)findViewById(R.id.zweiterZug);
 		turn3 = (RadioButton)findViewById(R.id.dritterZug);
 		turn4 = (RadioButton)findViewById(R.id.vierterZug);
-		turnDisplay = new RadioButton[4];
+		turn5 = (RadioButton)findViewById(R.id.fuenfterZug);
+		turnDisplay = new RadioButton[5];
 
 		//Array mit Radio Buttons befuellen
 
@@ -77,6 +80,7 @@ public class EinsActivity extends Activity {
 		turnDisplay[1] = turn2;
 		turnDisplay[2] = turn3;
 		turnDisplay[3] = turn4;
+		turnDisplay[4] = turn5;
 
 
 		//Buttons initialisieren
@@ -89,7 +93,7 @@ public class EinsActivity extends Activity {
 		Teilbutton = (Button) findViewById(R.id.dividieren);
 
 		
-   loadLevel();    //generiert das Interface abhaengig vom Spiellevel
+		loadLevel();    //generiert das Interface abhaengig vom Spiellevel
 		
 	}
 
@@ -109,7 +113,8 @@ public class EinsActivity extends Activity {
 	    switch (item.getItemId()) {
 	    
 	    case R.id.hauptMenu:
-	    	//intent fuer Menue Acitivity einfuegen
+	    	Intent in = new Intent(this, MenuActivity.class);
+	    	startActivity(in);
 	    	return true;
         case R.id.menuPunktEins:
         	levelEins_starten();
@@ -118,16 +123,16 @@ public class EinsActivity extends Activity {
             levelZwei_starten();
             return true;
         case R.id.menuPunktDrei:
-        levelDrei_starten();
-        return true;
+        	levelDrei_starten();
+        	return true;
         case R.id.menuPunktVier:
-        levelVier_starten();
-        return true;
-        /*
-        case R.id.menuPunktFuenf:
+        	levelVier_starten();
+        	return true;
+        
+        case R.id.fuenfterZug:
             levelFuenf_starten();
             return true;
-            */
+            
         
         default:
             return super.onOptionsItemSelected(item);
@@ -139,12 +144,13 @@ public class EinsActivity extends Activity {
 	public void loadLevel ()    //Generieren der Spielvariablen und laden des Interface abhaengig vom Level
 	{
 		
-		//Levelabhaengige Werte zuweisen
+		//Levelabhaenngige Werte zuweisen
 		
 		if (levelCounter == 1){zugAnzahl = 1;}
 	    if (levelCounter == 2){zugAnzahl = 2;turn2.setEnabled(true);}
 	    if (levelCounter == 3){zugAnzahl = 3;turn3.setEnabled(true);}
 	    if (levelCounter == 4){zugAnzahl = 4;turn4.setEnabled(true);}
+	    if (levelCounter == 5){zugAnzahl = 5;turn5.setEnabled(true);}
 	    
 		
 	
@@ -154,10 +160,10 @@ public class EinsActivity extends Activity {
 		Start = Zufall.nextInt(20);
 		Goal = Start;
 
-		plusZahl = Zufall.nextInt(10);
-		minusZahl = Zufall.nextInt(10);
-		malZahl = Zufall.nextInt(10);
-		teilZahl = Zufall.nextInt(10);
+		plusZahl = Zufall.nextInt(8)+1;
+		minusZahl = Zufall.nextInt(8)+1;
+		malZahl = Zufall.nextInt(8)+1;
+		teilZahl = Zufall.nextInt(8)+1;;
 
 
 		// Button Enums
@@ -170,85 +176,80 @@ public class EinsActivity extends Activity {
 		berta = Rechenoperation.getEnumByValue(buttonB);
 		chris = Rechenoperation.getEnumByValue(buttonC);
 		doofie = Rechenoperation.getEnumByValue(buttonD);
-		
-		
-		
-
+	
 	    
-	    
-		//Zielzahl berechnen
+	   	//Zielzahl berechnen
 		
 		Goal = zielen();
 		
 
 		// Textfelder zuweisen
 		
-				ans = Start;
-				String Startzahl = String.valueOf(Start);
-				String zuErreichen = String.valueOf(Goal);
-				String zwischenErgebnis = String.valueOf(ans);
+		ans = Start;
+		String Startzahl = String.valueOf(Start);
+		String zuErreichen = String.valueOf(Goal);
+		String zwischenErgebnis = String.valueOf(ans);
 
-				String plus = String.valueOf(plusZahl);
-				String minus = String.valueOf(minusZahl);
-				String mal = String.valueOf(malZahl);
-				String teil = String.valueOf(teilZahl);
+		String plus = String.valueOf(plusZahl);
+		String minus = String.valueOf(minusZahl);
+		String mal = String.valueOf(malZahl);
+		String teil = String.valueOf(teilZahl);
+
+						
+		//Buttons das jeweilige Drawable zuordnen
+		if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
+		if (anton.toString()=="MINUS") Plusbutton.setBackgroundResource(R.drawable.minus);
+		if (anton.toString()=="MAL") 	Plusbutton.setBackgroundResource(R.drawable.mal);
+		if (anton.toString()=="TEIL") Plusbutton.setBackgroundResource(R.drawable.geteilt);
+				
+		if (berta.toString()=="PLUS") Minusbutton.setBackgroundResource(R.drawable.plus);
+		if (berta.toString()=="MINUS") Minusbutton.setBackgroundResource(R.drawable.minus);
+		if (berta.toString()=="MAL") 	Minusbutton.setBackgroundResource(R.drawable.mal);
+		if (berta.toString()=="TEIL") Minusbutton.setBackgroundResource(R.drawable.geteilt);
+			
+		if (chris.toString()=="PLUS") Malbutton.setBackgroundResource(R.drawable.plus);
+		if (chris.toString()=="MINUS") Malbutton.setBackgroundResource(R.drawable.minus);
+		if (chris.toString()=="MAL") 	Malbutton.setBackgroundResource(R.drawable.mal);
+		if (chris.toString()=="TEIL") Malbutton.setBackgroundResource(R.drawable.geteilt);
+				
+		if (doofie.toString()=="PLUS") Teilbutton.setBackgroundResource(R.drawable.plus);
+		if (doofie.toString()=="MINUS") Teilbutton.setBackgroundResource(R.drawable.minus);
+		if (doofie.toString()=="MAL") 	Teilbutton.setBackgroundResource(R.drawable.mal);
+		if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
 
 				
 				
-				//Buttons das jeweilige Drawable zuordnen
-				if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
-				if (anton.toString()=="MINUS") Plusbutton.setBackgroundResource(R.drawable.minus);
-				if (anton.toString()=="MAL") 	Plusbutton.setBackgroundResource(R.drawable.mal);
-				if (anton.toString()=="TEIL") Plusbutton.setBackgroundResource(R.drawable.geteilt);
-				
-				if (berta.toString()=="PLUS") Minusbutton.setBackgroundResource(R.drawable.plus);
-				if (berta.toString()=="MINUS") Minusbutton.setBackgroundResource(R.drawable.minus);
-				if (berta.toString()=="MAL") 	Minusbutton.setBackgroundResource(R.drawable.mal);
-				if (berta.toString()=="TEIL") Minusbutton.setBackgroundResource(R.drawable.geteilt);
-				
-				if (chris.toString()=="PLUS") Malbutton.setBackgroundResource(R.drawable.plus);
-				if (chris.toString()=="MINUS") Malbutton.setBackgroundResource(R.drawable.minus);
-				if (chris.toString()=="MAL") 	Malbutton.setBackgroundResource(R.drawable.mal);
-				if (chris.toString()=="TEIL") Malbutton.setBackgroundResource(R.drawable.geteilt);
-				
-				if (doofie.toString()=="PLUS") Teilbutton.setBackgroundResource(R.drawable.plus);
-				if (doofie.toString()=="MINUS") Teilbutton.setBackgroundResource(R.drawable.minus);
-				if (doofie.toString()=="MAL") 	Teilbutton.setBackgroundResource(R.drawable.mal);
-				if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
 
-				
-				
-
-				startZahl.setText(Startzahl);
-				zielZahl.setText(zuErreichen);
-			    Ausgabe.setText(zwischenErgebnis); 
-			    Plusbutton.setText(plus);
-			    Minusbutton.setText(minus);
-			    Malbutton.setText(mal);
-			    Teilbutton.setText(teil);
-				
-			    
+		startZahl.setText(Startzahl);
+		zielZahl.setText(zuErreichen);
+	    Ausgabe.setText(zwischenErgebnis); 
+	    Plusbutton.setText(plus);
+	    Minusbutton.setText(minus);
+	    Malbutton.setText(mal);
+	    Teilbutton.setText(teil);		    
 		
 	}
 	
 	
-	public void nextLevel()
-	{
+	public void nextLevel(){	
+		 
 		 levelCounter ++;
 		 gameEnded = false;
-			zugCounter = 0;
-		 for (int i= 0; i< turnDisplay.length;i++){turnDisplay[i].setChecked(false);}
+		 zugCounter = 0;
+		 for (int i= 0; i< turnDisplay.length;i++)
+		 {turnDisplay[i].setChecked(false);}
 		 loadLevel();
 		
 	}
 	
 	
-	
-	
 	public void addieren(View Buttonclick) {
 
-		if (gameEnded == true) {}
-		if (gameEnded == true && levelCounter == 4){}
+		if (gameEnded == true && levelCounter == 5){
+			Intent in = new Intent(this, MenuActivity.class);
+			startActivity(in);
+		}
+		else if (gameEnded == true && ans != Goal) {}
 		else if(gameEnded == true && ans == Goal){
 			nextLevel();
 		}
@@ -266,8 +267,10 @@ public class EinsActivity extends Activity {
 
 	public void subtrahieren(View Buttonclick) {
 		
-		if (gameEnded == true) {}
-		if (gameEnded == true && levelCounter == 4){}
+		if (gameEnded == true && levelCounter == 5){
+			Intent in = new Intent(this, MenuActivity.class);
+			startActivity(in);
+		}		else if (gameEnded == true && ans != Goal) {}
 		else if(gameEnded == true && ans == Goal){
 			nextLevel();		}
 		else{
@@ -282,8 +285,11 @@ public class EinsActivity extends Activity {
 	}
 
 	public void multiplizieren (View Buttonclick) {
-		if (gameEnded == true) {}
-		if (gameEnded == true && levelCounter == 4){}
+		
+		if (gameEnded == true && levelCounter == 5){
+			Intent in = new Intent(this, MenuActivity.class);
+			startActivity(in);
+		}		else if (gameEnded == true && ans != Goal) {}
 		else if(gameEnded == true && ans == Goal){
 			nextLevel();
 		}
@@ -299,8 +305,11 @@ public class EinsActivity extends Activity {
 	}
 
 	public void dividieren (View Buttonclick) {
-		if (gameEnded == true) {}
-		if (gameEnded == true && levelCounter == 4){}
+
+		if (gameEnded == true && levelCounter == 5){
+			Intent in = new Intent(this, MenuActivity.class);
+			startActivity(in);
+		}		else if (gameEnded == true && ans != Goal) {}
 		else if(gameEnded == true && ans == Goal){
 			nextLevel();
 		}
@@ -333,7 +342,9 @@ public class EinsActivity extends Activity {
 		    Teilbutton.setText("T");
 			}
 		
-		if (zugCounter == zugAnzahl && ans != Goal){Ausgabe.setText("Verloren!");gameEnded = true;}
+		if (zugCounter == zugAnzahl && ans != Goal){
+			Ausgabe.setText("Verloren!");gameEnded = true;
+			}
         
 	}
 
@@ -344,9 +355,10 @@ public class EinsActivity extends Activity {
 		zugCounter = 0;
 		ans = Start;
 		String zwischenErgebnis = String.valueOf(ans);
-		 Ausgabe.setText(zwischenErgebnis); 
+		Ausgabe.setText(zwischenErgebnis); 
 
-		for (int i= 0; i< turnDisplay.length;i++){turnDisplay[i].setChecked(false);}
+		for (int i= 0; i< turnDisplay.length;i++){
+			turnDisplay[i].setChecked(false);}
 		}
 
 	}
@@ -379,6 +391,10 @@ public class EinsActivity extends Activity {
 		}
 	}
 	
+	
+	//Zufallszahlen berechnen
+	//
+	//
 	public int zielen(){
 		
 		Random Zufall = new Random();
@@ -437,6 +453,11 @@ public class EinsActivity extends Activity {
 		if (doofie.toString()=="TEIL") Goal = Goal / teilZahl;
 		
 	}
+	//
+	//
+	// Ende Zufallszahlen berechnen
+	
+	
 	
 	public void levelEins_starten ()
 	{
@@ -463,12 +484,12 @@ public class EinsActivity extends Activity {
 		
 	}
 	
-	/*
 	public void levelFuenf_starten()
 	{
 		levelCounter = 5;
 		loadLevel();	
 	}
-	*/
+
+	
 	
 }

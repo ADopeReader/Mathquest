@@ -18,9 +18,6 @@ public class MenuActivity extends Activity {
 	}
 
 
-
-	
-	
 	
 	public void loslegen (View Buttonclick){
 		
