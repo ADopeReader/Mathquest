@@ -113,21 +113,21 @@ public class EinsActivity extends Activity {
 	    case R.id.hauptMenu:
 	    	Intent in = new Intent(this, MenuActivity.class);
 	    	startActivity(in);
-	    	return true;
-        case R.id.menuPunktEins:
+	    	 return true;
+        case R.id.menueins:
         	levelEins_starten();
-            return true;
-        case R.id.menuPunktZwei:
+        	 return true;
+        case R.id.menuzwei:
             levelZwei_starten();
             return true;
-        case R.id.menuPunktDrei:
+        case R.id.menudrei:
         	levelDrei_starten();
-        	return true;
-        case R.id.menuPunktVier:
+        	 return true;
+        case R.id.menuvier:
         	levelVier_starten();
-        	return true;
+        	 return true;
         
-        case R.id.menuPunktFuenf:
+        case R.id.menufuenf:
             levelFuenf_starten();
             return true;
             

@@ -49,11 +49,11 @@ public final class R {
         public static final int ersterZug=0x7f08000a;
         public static final int fuenfterZug=0x7f08000e;
         public static final int hauptMenu=0x7f080017;
-        public static final int menuPunktDrei=0x7f080014;
-        public static final int menuPunktEins=0x7f080012;
-        public static final int menuPunktFuenf=0x7f080016;
-        public static final int menuPunktVier=0x7f080015;
-        public static final int menuPunktZwei=0x7f080013;
+        public static final int menudrei=0x7f080014;
+        public static final int menueins=0x7f080012;
+        public static final int menufuenf=0x7f080016;
+        public static final int menuvier=0x7f080015;
+        public static final int menuzwei=0x7f080013;
         public static final int multiplizieren=0x7f080003;
         public static final int reset=0x7f08000f;
         public static final int spielStarten=0x7f080001;
@@ -76,30 +76,25 @@ public final class R {
         public static final int Buttonmal=0x7f050006;
         public static final int Buttonminus=0x7f050004;
         public static final int Buttonplus=0x7f050003;
-        public static final int Ergebnis=0x7f050009;
-        public static final int Ergebnisanzeige=0x7f05000a;
+        public static final int Ergebnis=0x7f05000e;
+        public static final int Ergebnisanzeige=0x7f05000f;
         public static final int Start=0x7f050001;
         public static final int Ziel=0x7f050002;
         public static final int app_name=0x7f050000;
-        public static final int ausgabe=0x7f050008;
-        public static final int hello_world=0x7f05000d;
-        public static final int menu_hauptMenu=0x7f050015;
-        public static final int menu_levelDrei=0x7f050012;
+        public static final int ausgabe=0x7f05000d;
+        public static final int hello_world=0x7f050012;
+        public static final int menu_hauptMenu=0x7f05000c;
+        public static final int menu_levelDrei=0x7f050009;
         public static final int menu_levelEins=0x7f050007;
-        public static final int menu_levelVier=0x7f050013;
-        public static final int menu_levelZwei=0x7f050011;
-        public static final int reset=0x7f05000b;
-        public static final int spielStarten=0x7f050014;
-        public static final int title_activity_drei=0x7f050010;
-        public static final int title_activity_eins=0x7f05000e;
-        public static final int title_activity_menu=0x7f05000c;
-        public static final int title_activity_zwei=0x7f05000f;
+        public static final int menu_levelFuenf=0x7f05000b;
+        public static final int menu_levelVier=0x7f05000a;
+        public static final int menu_levelZwei=0x7f050008;
+        public static final int reset=0x7f050010;
+        public static final int title_activity_eins=0x7f050013;
+        public static final int title_activity_menu=0x7f050011;
     }
     public static final class strings {
-        public static final int menu_levelDrei=0x7f090001;
-        public static final int menu_levelFuenf=0x7f090003;
-        public static final int menu_levelVier=0x7f090002;
-        public static final int menu_levelZwei=0x7f090000;
+        public static final int menu_levelFuenf=0x7f090000;
     }
     public static final class style {
         /** 
