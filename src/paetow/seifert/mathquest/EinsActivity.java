@@ -5,12 +5,15 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ClipDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -19,12 +22,8 @@ public class EinsActivity extends Activity {
 	private EditText startZahl;
 	private EditText zielZahl;
 	private TextView Ausgabe;
-	private RadioButton turn1;
-	private RadioButton turn2;
-	private RadioButton turn3;
-	private RadioButton turn4;
-	private RadioButton turn5;
-	private RadioButton [] turnDisplay;
+	private TextView bubbleText;
+	
 	private Button Plusbutton;
 	private Button Minusbutton;
 	private Button Malbutton;
@@ -35,6 +34,15 @@ public class EinsActivity extends Activity {
 	private int Start;
 	private int Goal;
 	private int zugCounter;
+	
+	
+	//Animation des Fortschrittsbalken
+	private ImageView fortschrittsBalken;
+	private Handler pHandler; 
+	private ClipDrawable fortschrittsFuellung;
+	private int fuellZustand;
+
+	
 
 	int plusZahl; 
 	int minusZahl;
@@ -62,23 +70,16 @@ public class EinsActivity extends Activity {
 		
 
 		zugCounter = 0;                          //Zugzaehler auf Null setzen
+		fuellZustand = 0;                      //Fortschrittsbalken auf Null setzen
 		gameEnded = false;
 
+		
+		//Fortschrittsbalken, dessen Fuellung und Handler initialisieren
+		fortschrittsBalken = (ImageView) findViewById(R.id.progress);    
+		fortschrittsFuellung = (ClipDrawable) fortschrittsBalken.getDrawable();
+		pHandler = new Handler();
 
-		turn1 = (RadioButton)findViewById(R.id.ersterZug);     //Radio Buttons initialisieren
-		turn2 = (RadioButton)findViewById(R.id.zweiterZug);
-		turn3 = (RadioButton)findViewById(R.id.dritterZug);
-		turn4 = (RadioButton)findViewById(R.id.vierterZug);
-		turn5 = (RadioButton)findViewById(R.id.fuenfterZug);
-		turnDisplay = new RadioButton[5];
-
-		//Array mit Radio Buttons befuellen
-
-		turnDisplay[0] = turn1;
-		turnDisplay[1] = turn2;
-		turnDisplay[2] = turn3;
-		turnDisplay[3] = turn4;
-		turnDisplay[4] = turn5;
+		fortschrittsFuellung.setLevel(0);    //Setzt Fuellung auf Anfang
 
 
 		//Buttons initialisieren
@@ -89,6 +90,7 @@ public class EinsActivity extends Activity {
 		Minusbutton = (Button) findViewById(R.id.subtrahieren);
 		Malbutton = (Button) findViewById(R.id.multiplizieren);
 		Teilbutton = (Button) findViewById(R.id.dividieren);
+		bubbleText = (TextView) findViewById(R.id.bubble);
 
 		
 		loadLevel();    //generiert das Interface abhaengig vom Spiellevel
@@ -142,18 +144,7 @@ public class EinsActivity extends Activity {
 	public void loadLevel ()    //Generieren der Spielvariablen und laden des Interface abhaengig vom Level
 	{
 		
-		//Levelabhaenngige Werte zuweisen
-		
-		for (int i = 0; i < levelCounter; i++){
-			turnDisplay[i].setEnabled(true);
-		}
-		for (int i = levelCounter; i < turnDisplay.length; i++){
-			turnDisplay[i].setEnabled(false);
-		}
-		
-		
-	
-		
+
 		// Zufahlszahlen zuweisen
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
@@ -196,6 +187,7 @@ public class EinsActivity extends Activity {
 		String minus = String.valueOf(minusZahl);
 		String mal = String.valueOf(malZahl);
 		String teil = String.valueOf(teilZahl);
+		
 
 						
 		//Buttons das jeweilige Drawable zuordnen
@@ -220,13 +212,15 @@ public class EinsActivity extends Activity {
 		if (doofie.toString()=="TEIL") Teilbutton.setBackgroundResource(R.drawable.geteilt);
 	
 
+		//Texte in Grafik laden
 		startZahl.setText(Startzahl);
 		zielZahl.setText(zuErreichen);
 	    Ausgabe.setText(zwischenErgebnis); 
 	    Plusbutton.setText(plus);
 	    Minusbutton.setText(minus);
 	    Malbutton.setText(mal);
-	    Teilbutton.setText(teil);		    
+	    Teilbutton.setText(teil);	
+	   setBubbleText();
 		
 	}
 	
@@ -236,8 +230,7 @@ public class EinsActivity extends Activity {
 		 levelCounter ++;
 		 gameEnded = false;
 		 zugCounter = 0;
-		 for (int i= 0; i< turnDisplay.length;i++)
-		 {turnDisplay[i].setChecked(false);}
+		 step(true);
 		 loadLevel();
 		
 	}
@@ -329,10 +322,9 @@ public class EinsActivity extends Activity {
 	private void ziehen (){
 
 		zugCounter++;
-
-
-		turnDisplay[zugCounter-1].setChecked(true);
-
+		step(false);
+		setBubbleText();
+		
 		if (zugCounter == levelCounter && ans == Goal){
 			Ausgabe.setText("Gewonnen!");gameEnded = true;
 			Plusbutton.setText("N");
@@ -356,8 +348,7 @@ public class EinsActivity extends Activity {
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis); 
 
-		for (int i= 0; i< turnDisplay.length;i++){
-			turnDisplay[i].setChecked(false);}
+		step(true);   //sezt den Fortschritsbalken auf Ausgangsposition zurueck
 		}
 
 	}
@@ -461,32 +452,28 @@ public class EinsActivity extends Activity {
 	public void levelEins_starten ()
 	{
 		levelCounter = 1;
-		for (int i= 0; i< turnDisplay.length;i++)
-		{turnDisplay[i].setChecked(false);}
+        step(true);
 		loadLevel();
 	}
 	
 	public void levelZwei_starten ()
 	{
 		levelCounter = 2;
-		for (int i= 0; i< turnDisplay.length;i++)
-		{turnDisplay[i].setChecked(false);}
+		 step(true);
 		loadLevel();
 	}
 	
 	public void levelDrei_starten ()
 	{
 		levelCounter = 3;
-		for (int i= 0; i< turnDisplay.length;i++)
-		{turnDisplay[i].setChecked(false);}
+		 step(true);
 		loadLevel();
 	}
 	
 	public void levelVier_starten ()
 	{
 		levelCounter = 4;
-		for (int i= 0; i< turnDisplay.length;i++)
-		{turnDisplay[i].setChecked(false);}
+		 step(true);
 		loadLevel();
 		
 	}
@@ -494,8 +481,49 @@ public class EinsActivity extends Activity {
 	public void levelFuenf_starten()
 	{
 		levelCounter = 5;
-		for (int i= 0; i< turnDisplay.length;i++)
-		{turnDisplay[i].setChecked(false);}
+		 step(true);
 		loadLevel();	
 	}	
+	
+	
+	
+	
+
+	private Runnable animateImage = new Runnable() {
+
+        @Override
+        public void run() {
+            doTheAnimation();
+        }
+    };
+    
+    
+    
+    private void doTheAnimation() {
+    	
+        fortschrittsFuellung.setLevel(fuellZustand);
+        if (fuellZustand <= 10000) {
+            pHandler.postDelayed(animateImage, 50);
+        } else {
+            pHandler.removeCallbacks(animateImage);
+        }
+        
+        
+    }
+
+private void step(boolean resetter)
+{
+	if (resetter == true){fuellZustand = 0;}
+	else {
+	fuellZustand += (10000 / levelCounter);}
+	pHandler.post(animateImage);
+
+}
+	
+
+private void setBubbleText (){
+	String bubble = zugCounter + " / " + levelCounter;
+	bubbleText.setText(bubble);
+}
+	
 }

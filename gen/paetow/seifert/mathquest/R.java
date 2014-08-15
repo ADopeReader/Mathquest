@@ -32,37 +32,42 @@ public final class R {
     public static final class drawable {
         public static final int activitybackground=0x7f020000;
         public static final int backgrounddesign=0x7f020001;
-        public static final int geteilt=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int mal=0x7f020004;
-        public static final int minus=0x7f020005;
-        public static final int plus=0x7f020006;
+        public static final int bubble=0x7f020002;
+        public static final int geteilt=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int mal=0x7f020005;
+        public static final int minus=0x7f020006;
+        public static final int plus=0x7f020007;
+        public static final int progressbackground=0x7f020008;
+        public static final int progressbar=0x7f020009;
+        public static final int progressbarpic=0x7f02000a;
     }
     public static final class id {
         public static final int Ergebnisanzeige=0x7f080008;
         public static final int Goal=0x7f080004;
-        public static final int LinearLayout1=0x7f080011;
-        public static final int LinearLayout2=0x7f080010;
+        public static final int LinearLayout1=0x7f080012;
+        public static final int LinearLayout2=0x7f08000d;
         public static final int Startzahl=0x7f080005;
+        public static final int bubble=0x7f08000c;
         public static final int dividieren=0x7f080006;
-        public static final int dritterZug=0x7f08000c;
-        public static final int ersterZug=0x7f08000a;
-        public static final int fuenfterZug=0x7f08000e;
-        public static final int hauptMenu=0x7f080017;
-        public static final int menudrei=0x7f080014;
-        public static final int menueins=0x7f080012;
-        public static final int menufuenf=0x7f080016;
-        public static final int menuvier=0x7f080015;
-        public static final int menuzwei=0x7f080013;
+        public static final int dritterZug=0x7f080010;
+        public static final int ersterZug=0x7f08000e;
+        public static final int hauptMenu=0x7f080018;
+        public static final int menudrei=0x7f080015;
+        public static final int menueins=0x7f080013;
+        public static final int menufuenf=0x7f080017;
+        public static final int menuvier=0x7f080016;
+        public static final int menuzwei=0x7f080014;
         public static final int multiplizieren=0x7f080003;
-        public static final int reset=0x7f08000f;
+        public static final int progress=0x7f08000a;
+        public static final int reset=0x7f08000b;
         public static final int spielStarten=0x7f080001;
         public static final int subtrahieren=0x7f080002;
         public static final int textView1=0x7f080007;
         public static final int textView2=0x7f080000;
         public static final int textView3=0x7f080009;
-        public static final int vierterZug=0x7f08000d;
-        public static final int zweiterZug=0x7f08000b;
+        public static final int vierterZug=0x7f080011;
+        public static final int zweiterZug=0x7f08000f;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -92,9 +97,6 @@ public final class R {
         public static final int reset=0x7f050010;
         public static final int title_activity_eins=0x7f050013;
         public static final int title_activity_menu=0x7f050011;
-    }
-    public static final class strings {
-        public static final int menu_levelFuenf=0x7f090000;
     }
     public static final class style {
         /** 
