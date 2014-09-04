@@ -4,6 +4,7 @@ import java.util.Random;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ClipDrawable;
 import android.os.Bundle;
@@ -11,31 +12,31 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class EinsActivity extends Activity {
+public class EinsActivity extends Activity implements OnClickListener{
 	
-	private EditText startZahl;
-	private EditText zielZahl;
-	private TextView Ausgabe;
-	private TextView bubbleText;
+	//Pausedialoge
 	
-	private Button Plusbutton;
-	private Button Minusbutton;
-	private Button Malbutton;
-	private Button Teilbutton;
-	private int levelCounter;
+	private Dialog gewonnenDialog, verlorenDialog;
+	private Button dialogReset, dialogNextLevel;
+	
+	
+	
+	private EditText startZahl,zielZahl;
+	
+	private TextView Ausgabe,bubbleText;
+	
+	private Button Plusbutton, Minusbutton,Malbutton,Teilbutton;
 
-	private int ans;
-	private int Start;
-	private int Goal;
-	private int zugCounter;
-	
-	
+	private int levelCounter, ans,Start,Goal,zugCounter;
+
+
 	//Animation des Fortschrittsbalken
 	private ImageView fortschrittsBalken;
 	private Handler pHandler; 
@@ -43,27 +44,31 @@ public class EinsActivity extends Activity {
 	private int fuellZustand;
 
 	
+	int plusZahl, minusZahl,malZahl,teilZahl;
 
-	int plusZahl; 
-	int minusZahl;
-	int malZahl;
-	int teilZahl;
-
-	int buttonA;
-	int buttonB;
-	int buttonC;
-	int buttonD;
+	int buttonA, buttonB,buttonC,buttonD;
 	private Boolean gameEnded;
 
-	Rechenoperation anton; 
-	Rechenoperation berta;
-	Rechenoperation chris;
-	Rechenoperation doofie;
+	Rechenoperation anton,berta,chris,doofie;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		
+		//Dialogfenster und deren Buttons initialisieren
+		gewonnenDialog = new Dialog (this,android.R.style.Theme_Translucent);   //Dialogfenster initialisieren
+		gewonnenDialog.setContentView(R.layout.geschafft);
+		gewonnenDialog.hide();
+		dialogNextLevel = (Button) gewonnenDialog.findViewById(R.id.dialogNextLevel);
+		dialogNextLevel.setOnClickListener(this);
+		
+		verlorenDialog = new Dialog (this,android.R.style.Theme_Translucent); 
+		verlorenDialog.setContentView(R.layout.verloren);
+		verlorenDialog.hide();
+		dialogReset = (Button)verlorenDialog.findViewById(R.id.dialogReset);
+		dialogReset.setOnClickListener(this);
 		
 		
 		levelCounter = 1;              //Beim Starten der Aktivity wird mit Level 1 gestartet
@@ -82,14 +87,14 @@ public class EinsActivity extends Activity {
 		fortschrittsFuellung.setLevel(0);    //Setzt Fuellung auf Anfang
 
 
-		//Buttons initialisieren
+		//Buttons und Felder initialisieren
 		startZahl = (EditText) findViewById(R.id.Startzahl);
 		zielZahl = (EditText) findViewById(R.id.Goal);
 		Ausgabe = (TextView) findViewById(R.id.Ergebnisanzeige);
-		Plusbutton = (Button) findViewById(R.id.spielStarten);
-		Minusbutton = (Button) findViewById(R.id.subtrahieren);
-		Malbutton = (Button) findViewById(R.id.multiplizieren);
-		Teilbutton = (Button) findViewById(R.id.dividieren);
+		Plusbutton = (Button) findViewById(R.id.addieren); Plusbutton.setOnClickListener(this);
+		Minusbutton = (Button) findViewById(R.id.subtrahieren);Minusbutton.setOnClickListener(this);
+		Malbutton = (Button) findViewById(R.id.multiplizieren);Malbutton.setOnClickListener(this);
+		Teilbutton = (Button) findViewById(R.id.dividieren); Teilbutton.setOnClickListener(this);
 		bubbleText = (TextView) findViewById(R.id.bubble);
 
 		
@@ -115,6 +120,8 @@ public class EinsActivity extends Activity {
 	    case R.id.hauptMenu:
 	    	Intent in = new Intent(this, MenuActivity.class);
 	    	startActivity(in);
+	    	gewonnenDialog.dismiss();
+	    	verlorenDialog.dismiss();
 	    	 return true;
         case R.id.menueins:
         	levelEins_starten();
@@ -138,6 +145,35 @@ public class EinsActivity extends Activity {
             return super.onOptionsItemSelected(item);
 	    }
 	}
+	
+	
+	public void onClick(View v)
+	{
+		switch (v.getId()){
+		case R.id.dialogNextLevel: gewonnenDialog.hide(); nextLevel();break;
+		case R.id.dialogReset: verlorenDialog.hide(); reset(); break;
+		case R.id.reset: reset();
+		case R.id.addieren: try {
+				addieren();
+			} catch (InterruptedException e) {
+			}
+		case R.id.subtrahieren: try {
+				subtrahieren();
+			} catch (InterruptedException e) {
+			}
+		case R.id.multiplizieren:try {
+				multiplizieren();
+			} catch (InterruptedException e) {
+			}
+		case R.id.dividieren: try {
+				dividieren();
+			} catch (InterruptedException e) {
+			}
+		
+		}
+	}
+	
+	
 	
 	
 	
@@ -236,16 +272,14 @@ public class EinsActivity extends Activity {
 	}
 	
 	
-	public void addieren(View Buttonclick) {
+	public void addieren() throws InterruptedException {
 
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
 			startActivity(in);
 		}
 		else if (gameEnded == true && ans != Goal) {}
-		else if(gameEnded == true && ans == Goal){
-			nextLevel();
-		}
+
 		else{
 		if (anton.toString()=="PLUS") 	ans = ans + plusZahl;
 		if (anton.toString()=="MINUS") ans = ans - plusZahl;
@@ -258,14 +292,13 @@ public class EinsActivity extends Activity {
 		}
 	}
 
-	public void subtrahieren(View Buttonclick) {
+	public void subtrahieren() throws InterruptedException {
 		
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
 			startActivity(in);
 		}		else if (gameEnded == true && ans != Goal) {}
-		else if(gameEnded == true && ans == Goal){
-			nextLevel();		}
+
 		else{
 		if (berta.toString()=="PLUS") 	ans = ans + minusZahl;
 		if (berta.toString()=="MINUS") ans = ans - minusZahl;
@@ -277,15 +310,14 @@ public class EinsActivity extends Activity {
 		ziehen();}
 	}
 
-	public void multiplizieren (View Buttonclick) {
+	public void multiplizieren () throws InterruptedException {
 		
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
 			startActivity(in);
 		}		else if (gameEnded == true && ans != Goal) {}
-		else if(gameEnded == true && ans == Goal){
-			nextLevel();
-		}
+
+		
 		else{
 		if (chris.toString()=="PLUS") 	ans = ans + malZahl;
 		if (chris.toString()=="MINUS") ans = ans - malZahl;
@@ -297,15 +329,14 @@ public class EinsActivity extends Activity {
 		ziehen();}
 	}
 
-	public void dividieren (View Buttonclick) {
+	public void dividieren () throws InterruptedException {
 
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
 			startActivity(in);
 		}		else if (gameEnded == true && ans != Goal) {}
-		else if(gameEnded == true && ans == Goal){
-			nextLevel();
-		}
+
+		
 		else{
 		if (doofie.toString()=="PLUS") 	ans = ans + teilZahl;
 		if (doofie.toString()=="MINUS") ans = ans - teilZahl;
@@ -319,7 +350,7 @@ public class EinsActivity extends Activity {
 
 
 
-	private void ziehen (){
+	private void ziehen () throws InterruptedException{
 
 		zugCounter++;
 		step(false);
@@ -327,21 +358,21 @@ public class EinsActivity extends Activity {
 		
 		if (zugCounter == levelCounter && ans == Goal){
 			Ausgabe.setText("Gewonnen!");gameEnded = true;
-			Plusbutton.setText("N");
-		    Minusbutton.setText("E");
-		    Malbutton.setText("X");
-		    Teilbutton.setText("T");
+		    Thread.sleep(200);
+		    gewonnenDialog.show();
 			}
 		
 		if (zugCounter == levelCounter && ans != Goal){
 			Ausgabe.setText("Verloren!");gameEnded = true;
+		    Thread.sleep(200);
+		    verlorenDialog.show();
 			}
         
 	}
 
 
-	public void reset(View Buttonclick){
-		if (Plusbutton.getText()!= "N"){
+	public void reset(){
+
 		gameEnded = false;
 		zugCounter = 0;
 		ans = Start;
@@ -349,7 +380,7 @@ public class EinsActivity extends Activity {
 		Ausgabe.setText(zwischenErgebnis); 
 
 		step(true);   //sezt den Fortschritsbalken auf Ausgangsposition zurueck
-		}
+		
 
 	}
 
