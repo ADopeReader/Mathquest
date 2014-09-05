@@ -16,7 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class EinsActivity extends Activity implements OnClickListener{
@@ -152,24 +151,12 @@ public class EinsActivity extends Activity implements OnClickListener{
 		switch (v.getId()){
 		case R.id.dialogNextLevel: gewonnenDialog.hide(); nextLevel();break;
 		case R.id.dialogReset: verlorenDialog.hide(); reset(); break;
-		case R.id.reset: reset();
-		case R.id.addieren: try {
-				addieren();
-			} catch (InterruptedException e) {
-			}
-		case R.id.subtrahieren: try {
-				subtrahieren();
-			} catch (InterruptedException e) {
-			}
-		case R.id.multiplizieren:try {
-				multiplizieren();
-			} catch (InterruptedException e) {
-			}
-		case R.id.dividieren: try {
-				dividieren();
-			} catch (InterruptedException e) {
-			}
-		
+		case R.id.reset: reset(); break;
+		case R.id.addieren: addieren(); break;
+		case R.id.subtrahieren: subtrahieren(); break;
+		case R.id.multiplizieren: multiplizieren(); break;
+		case R.id.dividieren: dividieren(); break;
+
 		}
 	}
 	
@@ -179,8 +166,6 @@ public class EinsActivity extends Activity implements OnClickListener{
 	
 	public void loadLevel ()    //Generieren der Spielvariablen und laden des Interface abhaengig vom Level
 	{
-		
-
 		// Zufahlszahlen zuweisen
 		Random Zufall = new Random();
 		Start = Zufall.nextInt(20);
@@ -272,7 +257,7 @@ public class EinsActivity extends Activity implements OnClickListener{
 	}
 	
 	
-	public void addieren() throws InterruptedException {
+	public void addieren() {
 
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
@@ -292,7 +277,7 @@ public class EinsActivity extends Activity implements OnClickListener{
 		}
 	}
 
-	public void subtrahieren() throws InterruptedException {
+	public void subtrahieren() {
 		
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
@@ -310,7 +295,7 @@ public class EinsActivity extends Activity implements OnClickListener{
 		ziehen();}
 	}
 
-	public void multiplizieren () throws InterruptedException {
+	public void multiplizieren (){
 		
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
@@ -329,7 +314,7 @@ public class EinsActivity extends Activity implements OnClickListener{
 		ziehen();}
 	}
 
-	public void dividieren () throws InterruptedException {
+	public void dividieren (){
 
 		if (gameEnded == true && levelCounter == 5){
 			Intent in = new Intent(this, MenuActivity.class);
@@ -350,7 +335,7 @@ public class EinsActivity extends Activity implements OnClickListener{
 
 
 
-	private void ziehen () throws InterruptedException{
+	private void ziehen (){
 
 		zugCounter++;
 		step(false);
@@ -358,13 +343,23 @@ public class EinsActivity extends Activity implements OnClickListener{
 		
 		if (zugCounter == levelCounter && ans == Goal){
 			Ausgabe.setText("Gewonnen!");gameEnded = true;
-		    Thread.sleep(200);
+		    try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    gewonnenDialog.show();
 			}
 		
 		if (zugCounter == levelCounter && ans != Goal){
 			Ausgabe.setText("Verloren!");gameEnded = true;
-		    Thread.sleep(200);
+		    try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		    verlorenDialog.show();
 			}
         
