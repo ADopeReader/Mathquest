@@ -25,13 +25,11 @@ public class EinsActivity extends Activity implements OnClickListener{
 	private Dialog gewonnenDialog, verlorenDialog;
 	private Button dialogReset, dialogNextLevel;
 	
-	
-	
 	private EditText startZahl,zielZahl;
 	
 	private TextView Ausgabe,bubbleText;
 	
-	private Button Plusbutton, Minusbutton,Malbutton,Teilbutton;
+	private Button Plusbutton, Minusbutton,Malbutton,Teilbutton, Resetbutton;
 
 	private int levelCounter, ans,Start,Goal,zugCounter;
 
@@ -71,12 +69,13 @@ public class EinsActivity extends Activity implements OnClickListener{
 		
 		
 		levelCounter = 1;              //Beim Starten der Aktivity wird mit Level 1 gestartet
-		
-
 		zugCounter = 0;                          //Zugzaehler auf Null setzen
+		
 		fuellZustand = 0;                      //Fortschrittsbalken auf Null setzen
 		gameEnded = false;
 
+		Resetbutton = (Button) findViewById(R.id.reset);
+		Resetbutton.setOnClickListener(this);
 		
 		//Fortschrittsbalken, dessen Fuellung und Handler initialisieren
 		fortschrittsBalken = (ImageView) findViewById(R.id.progress);    
@@ -212,7 +211,7 @@ public class EinsActivity extends Activity implements OnClickListener{
 
 						
 		//Buttons das jeweilige Drawable zuordnen
-		if (anton.toString()=="PLUS") Plusbutton.setBackgroundResource(R.drawable.plus);
+		if (anton.toString()=="PLUS")  Plusbutton.setBackgroundResource(R.drawable.plus);
 		if (anton.toString()=="MINUS") Plusbutton.setBackgroundResource(R.drawable.minus);
 		if (anton.toString()=="MAL") 	Plusbutton.setBackgroundResource(R.drawable.mal);
 		if (anton.toString()=="TEIL") Plusbutton.setBackgroundResource(R.drawable.geteilt);
@@ -374,7 +373,8 @@ public class EinsActivity extends Activity implements OnClickListener{
 		String zwischenErgebnis = String.valueOf(ans);
 		Ausgabe.setText(zwischenErgebnis); 
 
-		step(true);   //sezt den Fortschritsbalken auf Ausgangsposition zurueck
+		step(true);
+		setBubbleText (); //sezt den Fortschritsbalken auf Ausgangsposition zurueck
 		
 
 	}
@@ -478,37 +478,37 @@ public class EinsActivity extends Activity implements OnClickListener{
 	public void levelEins_starten ()
 	{
 		levelCounter = 1;
-        step(true);
 		loadLevel();
+		reset();
 	}
 	
 	public void levelZwei_starten ()
 	{
 		levelCounter = 2;
-		 step(true);
 		loadLevel();
+		reset();
 	}
 	
 	public void levelDrei_starten ()
 	{
 		levelCounter = 3;
-		 step(true);
 		loadLevel();
+		reset();
 	}
 	
 	public void levelVier_starten ()
 	{
 		levelCounter = 4;
-		 step(true);
 		loadLevel();
+		reset();
 		
 	}
 	
 	public void levelFuenf_starten()
 	{
 		levelCounter = 5;
-		 step(true);
-		loadLevel();	
+		loadLevel();
+		reset();	
 	}	
 	
 	
