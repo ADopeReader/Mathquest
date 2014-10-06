@@ -573,7 +573,7 @@ private void setBubbleText (){
 public void onBackPressed() {
     new AlertDialog.Builder(this)
         .setTitle("Wirklich schließen?")
-        .setMessage("Sicher, dass Sie zurück wollen?")
+        .setMessage("Sicher, dass Sie genug Spaß hatten?")
         .setNegativeButton(android.R.string.no, null)
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			
