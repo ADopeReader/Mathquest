@@ -2,9 +2,10 @@ package paetow.seifert.mathquest;
 
 import java.util.Random;
 
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ClipDrawable;
 import android.os.Bundle;
@@ -57,12 +58,28 @@ public class EinsActivity extends Activity implements OnClickListener{
 		//Dialogfenster und deren Buttons initialisieren
 		gewonnenDialog = new Dialog (this,android.R.style.Theme_Translucent);   //Dialogfenster initialisieren
 		gewonnenDialog.setContentView(R.layout.geschafft);
+		gewonnenDialog.setOnCancelListener(new DialogInterface.OnCancelListener()
+		{
+		    @Override
+		    public void onCancel(DialogInterface dialog)
+		    {
+		         reset();
+		    }
+		});
 		gewonnenDialog.hide();
 		dialogNextLevel = (Button) gewonnenDialog.findViewById(R.id.dialogNextLevel);
 		dialogNextLevel.setOnClickListener(this);
 		
 		verlorenDialog = new Dialog (this,android.R.style.Theme_Translucent); 
 		verlorenDialog.setContentView(R.layout.verloren);
+		verlorenDialog.setOnCancelListener(new DialogInterface.OnCancelListener()
+		{
+		    @Override
+		    public void onCancel(DialogInterface dialog)
+		    {
+		         reset();
+		    }
+		});
 		verlorenDialog.hide();
 		dialogReset = (Button)verlorenDialog.findViewById(R.id.dialogReset);
 		dialogReset.setOnClickListener(this);
@@ -551,5 +568,32 @@ private void setBubbleText (){
 	String bubble = zugCounter + " / " + levelCounter;
 	bubbleText.setText(bubble);
 }
+
+@Override
+public void onBackPressed() {
+    new AlertDialog.Builder(this)
+        .setTitle("Wirklich schließen?")
+        .setMessage("Sicher, dass Sie genug Spaß hatten?")
+        .setNegativeButton(android.R.string.no, null)
+        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			
+        	public void onClick(DialogInterface arg0, int arg1) {
+                EinsActivity.super.onBackPressed();
+            }
+        }).create().show();
+}
+
+
+protected void onResume(){
+	super.onResume();
+}
+protected void onPause(){
+	super.onPause();
+}
+protected void onStop(){
+	super.onStop();
+}
+
+
 	
 }
